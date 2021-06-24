@@ -1,0 +1,72 @@
+.conversations {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 15px;
+  padding: 10px;
+  margin: 15px 0;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  cursor: pointer;
+}
+
+.conversations:hover {
+  background: #1f4037 !important; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #99f2c8,
+    #1f4037
+  ) !important; /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #99f2c8,
+    #1f4037
+  ) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.conversations-avatar {
+  height: 3em;
+  width: 3em;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.conversations-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.conversations-info > span {
+  font-weight: 600;
+}
+
+.conversations-info > p {
+  font-size: 0.8rem;
+}
+
+.conversations-new-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2rem;
+  width: 2.2rem;
+  background: #1f4037; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #99f2c8,
+    #1f4037
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #99f2c8,
+    #1f4037
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border-radius: 50%;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.conversations-new-message > span {
+  font-size: 0.8rem;
+  margin-right: 2px;
+}
