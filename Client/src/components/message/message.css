@@ -45,11 +45,8 @@
 
 .message-timestamp {
   margin-left: 15px;
-  color: grey;
+  color: white;
   font-size: 0.7rem;
-}
-.message-timestamp.own {
-  color: whitesmoke;
 }
 
 .icon {

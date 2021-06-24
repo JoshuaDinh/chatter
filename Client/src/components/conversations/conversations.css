@@ -7,6 +7,7 @@
   margin: 15px 0;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   cursor: pointer;
+  transition: 0.2s ease-in;
 }
 
 .conversations:hover {
@@ -21,6 +22,7 @@
     #99f2c8,
     #1f4037
   ) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  transform: scale(1.083);
 }
 
 .conversations-avatar {
