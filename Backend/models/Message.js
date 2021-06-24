@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const router = require("expressRouter");
 
 const MessageSchema = new mongoose.Schema(
   {

@@ -5,6 +5,7 @@ const Conversation = require("../../models/Conversations");
 // @route Post /api/conversations
 // @desc Create new conversation
 // @access Private
+
 router.post("/", async (req, res) => {
   // Create new conversation object
   const newConversation = await new Conversation({
