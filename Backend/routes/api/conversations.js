@@ -2,8 +2,22 @@ const express = require("express");
 const router = express.Router();
 const Conversation = require("../../models/Conversations");
 
-router.get("/", (req, res) => {
-  res.status(200).send("connected");
+// @route Post /api/conversations
+// @desc Create new conversation
+// @access Private
+router.post("/", async (req, res) => {
+  // Create new conversation object
+  const newConversation = await new Conversation({
+    members: [req.senderId, req.recieverId],
+  });
+
+  // save conversation to db
+  try {
+    const savedConversation = await newConversation.save();
+    res.status(200).json(savedConversation);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
