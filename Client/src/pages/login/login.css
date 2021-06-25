@@ -23,7 +23,16 @@
 
 .login-image {
   margin-top: 45px;
-  height: 5.5em;
+  height: 0;
+  animation: image 2.5s forwards;
+}
+
+@keyframes image {
+  0% {
+  }
+  100% {
+    height: 5.5em;
+  }
 }
 
 .login-header {
