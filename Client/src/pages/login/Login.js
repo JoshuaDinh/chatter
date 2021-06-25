@@ -13,7 +13,12 @@ const Login = () => {
       </div>
       <div className="login-form-wrapper">
         <h2>Hello!</h2>
-        <h1>Lets get Chatting..</h1>
+        <div className="login-animation-wrapper">
+          <h1>Lets get Chatting</h1>
+          <span className="login-dot-animation">.</span>
+          <span className="login-dot-animation">.</span>
+          <span className="login-dot-animation">.</span>
+        </div>
         {/* Form */}
         <form className="login-form">
           <h3 className="login-form-header">
