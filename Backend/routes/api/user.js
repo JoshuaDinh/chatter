@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 const User = require("../../models/User");
 var bcrypt = require("bcryptjs");
+const { findByIdAndUpdate } = require("../../models/User");
 
-// @route Post /api/register
+// @route Post /api/user/register
 // @desc Register/create a new user account
 // @access Private
 
@@ -35,6 +36,38 @@ router.post("/register", async (req, res) => {
     res.status(200).json(user);
   } catch (err) {
     res.status(500).json("failed");
+  }
+});
+
+// @route Post /api/user/update
+// @desc Update User info
+// @access Private
+
+router.put("/:id", async (req, res) => {
+  if (req.body.userId === req.params.id || req.user.isAdmin) {
+    // If user updates password
+    if (req.body.password) {
+      try {
+        // Encrypt password
+        const salt = await bcrypt.genSaltSync(10);
+        // Hash specific users password
+        req.body.password = await bcrypt.hashSync(req.body.password, salt);
+      } catch (err) {
+        return res.status(500).json(err);
+      }
+
+      // Updated information
+      try {
+        let user = await User.findByIdAndUpdate(req.params.id, {
+          $set: req.body,
+        });
+        res.status(200).json("Account has been updated");
+      } catch (err) {
+        return res.status(500).json(err);
+      }
+    }
+  } else {
+    return res.status(403).json("Please make sure you are logged in");
   }
 });
 
