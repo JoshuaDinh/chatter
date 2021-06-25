@@ -9,7 +9,7 @@
   "author": "Joshua Dinh",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "config": "^3.3.6",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",

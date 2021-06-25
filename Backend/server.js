@@ -16,7 +16,7 @@ app.use(cors());
 app.get("/", (req, res) => res.status(200).send("hello world"));
 app.use("/api/conversations", require("./routes/api/conversations"));
 app.use("/api/user", require("./routes/api/user"));
-app.use("/api/auth", require("./routes/api/auth"));
+// app.use("/api/auth", require("./routes/api/auth"));
 
 // listen
 app.listen(port, console.log("we are running on " + port));
