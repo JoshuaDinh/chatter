@@ -39,12 +39,12 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// @route Post /api/user/update
+// @route Put /api/user/id
 // @desc Update User info
 // @access Private
 
 router.put("/:id", async (req, res) => {
-  if (req.body.userId === req.params.id || req.user.isAdmin) {
+  if (req.body.userId === req.params.id || req.body.isAdmin) {
     // If user updates password
     if (req.body.password) {
       try {
@@ -68,6 +68,26 @@ router.put("/:id", async (req, res) => {
     }
   } else {
     return res.status(403).json("Please make sure you are logged in");
+  }
+});
+
+// @route Deleted /api/user/id
+// @desc Delete User account
+// @access Private
+
+router.delete("/:id", async (req, res) => {
+  if (req.body.userId === req.params.id || req.body.isAdmin) {
+    // Delete account information
+    try {
+      let user = await User.findByIdAndDelete(req.params.id, {
+        $set: req.body,
+      });
+      res.status(200).json("Account has been deleted");
+    } catch (err) {
+      return res.status(500).json(err);
+    }
+  } else {
+    return res.status(403).json("You can only delete your account.");
   }
 });
 
