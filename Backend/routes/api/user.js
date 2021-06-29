@@ -133,4 +133,32 @@ router.put("/:id/addFriend", async (req, res) => {
   }
 });
 
+// @route Remove a Friend /api/user/id
+// @desc  Remove a User as friend
+// @access Private
+
+router.put("/:id/deleteFriend", async (req, res) => {
+  // Check if user is the same
+  if (req.body.userId !== req.params.id) {
+    try {
+      const user = await User.findById(req.params.id);
+      const currentUser = await User.findById(req.body.userId);
+      // If user is currently a friend update schema
+      if (user.friendsList.includes(req.body.userId)) {
+        await user.updateOne({ $pull: { friendsList: currentUser._id } });
+        await currentUser.updateOne({
+          $pull: { friendsList: user._id },
+        });
+        res.status(200).json("Account has been removed from friends");
+      } else {
+        res.status(403).json("You can not unfriend your self");
+      }
+    } catch (err) {
+      return res.status(500).json(err);
+    }
+  } else {
+    res.status(403).json("You cant add your self as a friend");
+  }
+});
+
 module.exports = router;
