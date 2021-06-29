@@ -58,7 +58,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  margin: 25px 10px 15px 0px;
+  margin-top: 5px;
   border: 1px solid grey;
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -100,14 +100,15 @@
 
   border-radius: 50%;
   margin-right: 15px;
+  cursor: pointer;
 }
 
 .chat-box-submit-wrapper:hover {
   transform: scale(1.25);
+  transition: 0.25s ease-in;
 }
 
 .chat-box-submit-button {
   font-size: 1rem !important;
   color: white;
-  cursor: pointer;
 }
