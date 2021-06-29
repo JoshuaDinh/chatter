@@ -10,7 +10,6 @@ const { findByIdAndUpdate } = require("../../models/User");
 
 router.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
-
   try {
     // See if user exists
     let user = await User.findOne({ email });
@@ -88,6 +87,49 @@ router.delete("/:id", async (req, res) => {
     }
   } else {
     return res.status(403).json("You can only delete your account.");
+  }
+});
+
+// @route Get /api/user/id
+// @desc Get User account
+// @access Private
+
+router.get("/:id", async (req, res) => {
+  // get account information
+  try {
+    let user = await User.findById(req.params.id);
+    const { password, id, ...other } = user._doc;
+    res.status(200).json(other);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
+// @route Add Friend /api/user/id
+// @desc Add User as friend
+// @access Private
+
+router.put("/:id/addFriend", async (req, res) => {
+  // Check if user is the same
+  if (req.body.userId !== req.params.id) {
+    try {
+      const user = await User.findById(req.params.id);
+      const currentUser = await User.findById(req.body.userId);
+      // If user is not already friends update schema
+      if (!user.friendsList.includes(req.body.userId)) {
+        await user.updateOne({ $push: { friendsList: currentUser._id } });
+        await currentUser.updateOne({
+          $push: { friendsList: user._id },
+        });
+        res.status(200).json("Account has been added as a friend");
+      } else {
+        res.status(403).json("You are already friends");
+      }
+    } catch (err) {
+      return res.status(500).json(err);
+    }
+  } else {
+    res.status(403).json("You cant add your self as a friend");
   }
 });
 
