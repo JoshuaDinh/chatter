@@ -13,15 +13,23 @@ const Register = ({ setRegisterForm }) => {
       <div className="register-input-wrapper">
         <input className="register-input" type="text" placeholder="Username" />
         <input className="register-input" type="text" placeholder="Email" />
-        <input className="register-input" type="text" placeholder="Password" />
         <input
           className="register-input"
-          type="text"
+          type="password"
+          placeholder="Password"
+        />
+        <input
+          className="register-input"
+          type="password"
           placeholder="Confirm Password"
         />
       </div>
-      <button className="register-button">register</button>
-      <div className="register-create-account-button" onClick={setRegisterForm}>
+      <div className="register-policy">
+        <input type="checkbox" />
+        <p>I agreen to the Terms of Service & Privacy Policy</p>
+      </div>
+      <div className="register-button">SIGN UP</div>
+      <div className="register-return-button" onClick={setRegisterForm}>
         Return to Login
       </div>
     </form>

@@ -61,7 +61,10 @@
     #5b86e5,
     #36d1dc
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
   color: white;
+  text-align: center;
   font-size: 1.2rem;
   cursor: pointer;
   transition: 0.25s ease-in;

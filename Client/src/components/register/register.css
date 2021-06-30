@@ -25,6 +25,7 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   width: 90%;
+  margin-bottom: 10px;
 }
 
 .register-input {
@@ -38,7 +39,7 @@
 
 .register-button {
   width: 30%;
-  margin: 40px 0 10px 0px;
+  margin: 15px 0 10px 0px;
   padding: 10px;
   border-radius: 5px;
   flex: 1.7;
@@ -53,8 +54,9 @@
     #5b86e5,
     #36d1dc
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   color: white;
+  text-align: center;
   font-size: 1.2rem;
   cursor: pointer;
   transition: 0.25s ease-in;
@@ -64,9 +66,9 @@
   transform: scale(1.1);
 }
 
-.register-create-account-button {
+.register-return-button {
   width: 30%;
-  margin: 20px 0;
+  margin: 10px 0;
   padding: 15px;
   border: none;
   outline: none;
@@ -75,9 +77,19 @@
   font-size: 0.9rem;
   cursor: pointer;
 }
-.register-create-account-button:hover {
+.register-return-button:hover {
   background: -webkit-linear-gradient(#5b86e5, #36d1dc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: #36d1dc;
+}
+
+.register-policy {
+  display: flex;
+  align-items: center;
+}
+
+.register-policy > input {
+  margin: 17px 10px;
+  cursor: pointer;
 }

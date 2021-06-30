@@ -12,10 +12,10 @@ const Login = ({ setRegisterForm }) => {
       </h3>
       <div className="login-input-wrapper">
         <input className="login-input" type="text" placeholder="Email" />
-        <input className="login-input" type="text" placeholder="Password" />
+        <input className="login-input" type="password" placeholder="Password" />
       </div>
       <h5 className="login-forgot-password">Forgot Password?</h5>
-      <button className="login-button">Login</button>
+      <div className="login-button">Login</div>
       <div className="login-create-account-button" onClick={setRegisterForm}>
         Create Account
       </div>
