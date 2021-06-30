@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../../models/User");
-var bcrypt = require("bcryptjs");
-const { findByIdAndUpdate } = require("../../models/User");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("config");
+const auth = require("../../middleware/token");
 
 // @route Post /api/user/register
 // @desc Register/create a new user account
@@ -32,7 +34,24 @@ router.post("/register", async (req, res) => {
     // Save new user to database
     await user.save();
 
-    res.status(200).json(user);
+    // Json WebToken
+    const payload = {
+      user: {
+        id: user.id,
+      },
+    };
+
+    jwt.sign(
+      payload,
+      config.get("jwtSecret"),
+      { expiresIn: 3600 },
+      (err, token) => {
+        if (err) throw err;
+        res.json({ token });
+      }
+    );
+
+    // res.status(200).json(user);
   } catch (err) {
     res.status(500).json("failed");
   }
@@ -42,7 +61,7 @@ router.post("/register", async (req, res) => {
 // @desc Update User info
 // @access Private
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
   if (req.body.userId === req.params.id || req.body.isAdmin) {
     // If user updates password
     if (req.body.password) {
