@@ -12,18 +12,31 @@ const Register = ({ setRegisterForm, setTermsOfService }) => {
   });
 
   // Destructure formData state
-  const { name, email, password, password2 } = formData;
+  const { username, email, password, password2 } = formData;
 
   // Update formData based off of name attributes on input fields
   const updateFormData = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
       console.log("npo match");
     } else {
-      console.log(formData);
+      try {
+        const requestOptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, email, password }),
+        };
+        const res = await fetch(
+          "http://localhost:3000/api/user/register",
+          requestOptions
+        );
+        console.log(res);
+      } catch (err) {
+        alert(err);
+      }
     }
   };
 
@@ -39,7 +52,7 @@ const Register = ({ setRegisterForm, setTermsOfService }) => {
           placeholder="Username"
           name="username"
           onChange={(e) => updateFormData(e)}
-          value={name}
+          value={username}
           required
         />
         <input
