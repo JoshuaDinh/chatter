@@ -20,4 +20,19 @@ router.post("/", async (req, res) => {
   }
 });
 
+// @route Get /api/conversations/userId
+// @desc get conversation of user
+// @access Private
+
+router.get("/:userId", async (req, res) => {
+  try {
+    const conversation = await Conversation.find({
+      members: { $in: [req.params.userId] },
+    });
+    res.status(200).json(conversation);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
