@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./messenger.css";
 import Conversations from "../../components/conversations/Conversations";
 import ChatOnline from "../../components/chatOnline/ChatOnline";
@@ -9,7 +9,16 @@ import SendIcon from "@material-ui/icons/Send";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
 
-const Messenger = ({}) => {
+const Messenger = () => {
+  const [] = useState("");
+  useEffect(() => {
+    const fetchData = async () => {
+      const messages = fetch(
+        "http://localhost:3000/api/messages/60dbb965125d8e3d2a52353d"
+      );
+    };
+    fetchData();
+  }, []);
   return (
     <div className="messenger">
       <div className="chat-menu">
