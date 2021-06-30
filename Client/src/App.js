@@ -4,7 +4,7 @@ import Messenger from "./pages/messenger/Messenger";
 import Login from "./pages/login/Login";
 import Navigation from "./components/navigation/Navigation";
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Switch>
@@ -18,6 +18,6 @@ function App() {
       </Switch>
     </Router>
   );
-}
+};
 
 export default App;

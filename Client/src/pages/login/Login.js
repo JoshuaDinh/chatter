@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./login.css";
 import loginImage from "../../images/loginImage.svg";
 
@@ -25,7 +25,7 @@ const Login = () => {
             <span>Login</span> to your account
           </h3>
           <div className="login-input-wrapper">
-            <input className="login-input" type="text" placeholder="Username" />
+            <input className="login-input" type="text" placeholder="Email" />
             <input className="login-input" type="text" placeholder="Password" />
           </div>
           <h5 className="login-forgot-password">Forgot Password?</h5>
