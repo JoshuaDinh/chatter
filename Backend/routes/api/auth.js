@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../../models/User");
-var bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs");
+const auth = require("../../middleware/token");
 
 // @route Post /api/auth
-// @desc Login/Authenticate User
-// @access Private
+// @desc Login user & get token
+// @access Public
 
 router.post("/", async (req, res) => {
   const { email, password } = req.body;
@@ -29,7 +30,24 @@ router.post("/", async (req, res) => {
         .json(
           "Invalid Credentials, please  check that your username & password are correct"
         );
-    res.status(200).json(user);
+
+    // Json WebToken
+    const payload = {
+      user: {
+        id: user.id,
+      },
+    };
+    jwt.sign(
+      payload,
+      config.get("jwtSecret"),
+      { expiresIn: 3600 },
+      (err, token) => {
+        if (err) throw err;
+        res.json({ token });
+      }
+    );
+
+    // res.status(200).json(user);
   } catch (err) {
     res.status(500).json(err);
   }
