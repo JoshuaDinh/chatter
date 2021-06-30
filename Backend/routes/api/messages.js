@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
 });
 
 // @route Get /api/messages
-// @desc get all messages of a conversation
+// @desc get all messages of a conversation by id
 // @access Private
 
 router.get("/:conversationId", async (req, res) => {
