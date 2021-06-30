@@ -1,0 +1,64 @@
+.termsOfService {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: whitesmoke;
+  border: 10px solid whitesmoke;
+  line-height: 175%;
+}
+
+.termsOfService-wrapper {
+  height: 61vh;
+  background: #36d1dc; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #5b86e5,
+    #36d1dc
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #5b86e5,
+    #36d1dc
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  padding: 5px;
+}
+
+.termsOfService-container {
+  padding: 20px;
+  max-height: 59.7vh;
+  min-height: 59.7vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: whitesmoke;
+  overflow: scroll;
+}
+
+.break {
+  min-height: 7px;
+  min-width: 50px;
+  background: #36d1dc; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #5b86e5,
+    #36d1dc
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #5b86e5,
+    #36d1dc
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  margin: 20px 0;
+}
+
+.terms-icon {
+  font-size: 2rem !important;
+  cursor: pointer;
+  margin-bottom: 15px;
+  color: grey;
+}
+
+.terms-icon:hover {
+  color: #36d1dc !important;
+}
