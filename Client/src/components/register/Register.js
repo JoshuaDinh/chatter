@@ -1,26 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
 import "./register.css";
 import { connect } from "react-redux";
 import { SET_REGISTER_FORM, SET_TERMS_OF_SERVICE } from "../../actions/Types";
 
 const Register = ({ setRegisterForm, setTermsOfService }) => {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    password2: "",
+  });
+
+  // Destructure formData state
+  const { name, email, password, password2 } = formData;
+
+  // Update formData based off of name attributes on input fields
+  const updateFormData = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (password !== password2) {
+      console.log("npo match");
+    } else {
+      console.log(formData);
+    }
+  };
+
   return (
-    <form className="register-form">
+    <form className="register-form" onSubmit={(e) => onSubmit(e)}>
       <h3 className="register-form-header">
         <span>Welcome!</span> please fill out the items below
       </h3>
       <div className="register-input-wrapper">
-        <input className="register-input" type="text" placeholder="Username" />
-        <input className="register-input" type="text" placeholder="Email" />
+        <input
+          className="register-input"
+          type="text"
+          placeholder="Username"
+          name="username"
+          onChange={(e) => updateFormData(e)}
+          value={name}
+          required
+        />
+        <input
+          className="register-input"
+          type="text"
+          placeholder="Email"
+          name="email"
+          onChange={(e) => updateFormData(e)}
+          value={email}
+          required
+        />
         <input
           className="register-input"
           type="password"
           placeholder="Password"
+          name="password"
+          onChange={(e) => updateFormData(e)}
+          value={password}
+          minLength="6"
         />
         <input
           className="register-input"
           type="password"
           placeholder="Confirm Password"
+          name="password2"
+          onChange={(e) => updateFormData(e)}
+          value={password2}
+          minLength="6"
         />
       </div>
       <div className="register-policy">
@@ -32,9 +79,9 @@ const Register = ({ setRegisterForm, setTermsOfService }) => {
           </span>
         </p>
       </div>
-      <div className="register-button">SIGN UP</div>
+      <input className="register-button" type="submit" value="Sign Up" />
       <div className="register-return-button" onClick={setRegisterForm}>
-        Return to Login
+        Already have an account?
       </div>
     </form>
   );

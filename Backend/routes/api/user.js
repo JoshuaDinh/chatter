@@ -93,7 +93,7 @@ router.put("/:id", auth, async (req, res) => {
 // @desc Delete User account
 // @access Private
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   if (req.body.userId === req.params.id || req.body.isAdmin) {
     // Delete account information
     try {
