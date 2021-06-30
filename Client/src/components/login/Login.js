@@ -28,7 +28,7 @@ const mapStateToProps = (state) => {
     registerForm: state.registerForm,
   };
 };
-const mapDispatchToProps = (dispatch, action) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     setRegisterForm: () => dispatch({ type: SET_REGISTER_FORM }),
   };

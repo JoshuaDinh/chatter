@@ -38,7 +38,7 @@
 
 .register-button {
   width: 30%;
-  margin: 40px 0;
+  margin: 40px 0 10px 0px;
   padding: 10px;
   border-radius: 5px;
   flex: 1.7;
@@ -62,4 +62,23 @@
 
 .register-button:hover {
   transform: scale(1.1);
+}
+
+.register-create-account-button {
+  width: 30%;
+  margin: 20px 0;
+  padding: 15px;
+  border: none;
+  outline: none;
+  background: white;
+  text-align: center;
+
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.register-create-account-button:hover {
+  background: -webkit-linear-gradient(#5b86e5, #36d1dc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #36d1dc;
 }

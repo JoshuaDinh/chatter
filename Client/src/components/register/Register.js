@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./register.css";
+import { connect } from "react-redux";
+import { setRegisterForm } from "../../actions/registerForm";
+import { SET_REGISTER_FORM } from "../../actions/Types";
 
-const Register = () => {
+const Register = ({ setRegisterForm }) => {
   return (
     <form className="register-form">
       <h3 className="register-form-header">
@@ -18,8 +21,22 @@ const Register = () => {
         />
       </div>
       <button className="register-button">register</button>
+      <div className="register-create-account-button" onClick={setRegisterForm}>
+        Return to Login
+      </div>
     </form>
   );
 };
 
-export default Register;
+const mapStateToProps = (state) => {
+  return {
+    registerForm: state.registerForm,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setRegisterForm: () => dispatch({ type: SET_REGISTER_FORM }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
