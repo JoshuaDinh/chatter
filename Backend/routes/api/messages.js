@@ -17,12 +17,20 @@ router.post("/", async (req, res) => {
   }
 });
 
-// @route Post /api/messages
-// @desc add a message to a conversation
+// @route Get /api/messages
+// @desc get all messages of a conversation
 // @access Private
 
-router.get("/", (req, res) => {
-  res.status(200).json("connected");
+router.get("/:conversationId", async (req, res) => {
+  try {
+    const allMessages = await Message.find({
+      conversationId: req.params.conversationId,
+    });
+
+    res.status(200).json(allMessages);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
