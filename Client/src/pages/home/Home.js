@@ -2,6 +2,7 @@ import React from "react";
 import "./home.css";
 import Login from "../../components/login/Login";
 import Register from "../../components/register/Register";
+import TermsOfService from "../../components/TermsOfService/TermsOfService";
 import homeImage from "../../images/homeImage.svg";
 import { connect } from "react-redux";
 import registerForm from "../../reducers/registerForm";
@@ -24,6 +25,7 @@ const Home = ({ registerForm }) => {
           <span className="home-dot-animation">.</span>
         </div>
         {registerForm ? <Register /> : <Login />}
+        <TermsOfService />
       </div>
     </div>
   );
