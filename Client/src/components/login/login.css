@@ -30,7 +30,7 @@
   margin: 20px 0;
   outline: none;
   border: none;
-  border-bottom: 2px solid grey;
+  border-bottom: 1px solid grey;
 }
 
 .login-forgot-password {
@@ -61,7 +61,6 @@
     #5b86e5,
     #36d1dc
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
   color: white;
   font-size: 1.2rem;
   cursor: pointer;
