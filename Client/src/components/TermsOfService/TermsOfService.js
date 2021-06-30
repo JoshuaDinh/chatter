@@ -1,12 +1,15 @@
 import React from "react";
 import "./termsOfService.css";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-const TermsOfService = () => {
+import { connect } from "react-redux";
+import { SET_TERMS_OF_SERVICE } from "../../actions/Types";
+
+const TermsOfService = ({ termsOfService }) => {
   return (
     <div className="termsOfService">
       <div className="termsOfService-wrapper">
         <div className="termsOfService-container">
-          <HighlightOffIcon className="terms-icon" />
+          <HighlightOffIcon className="terms-icon" onClick={termsOfService} />
           <h2>
             <strong>Terms and Conditions - Demo Purposes Only</strong>
           </h2>
@@ -298,4 +301,16 @@ const TermsOfService = () => {
   );
 };
 
-export default TermsOfService;
+const mapStateToProps = (state) => {
+  return {
+    termsOfService: state.TermsOfService,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    termsOfService: () => dispatch({ type: SET_TERMS_OF_SERVICE }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TermsOfService);

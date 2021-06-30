@@ -93,3 +93,16 @@
   margin: 17px 10px;
   cursor: pointer;
 }
+
+.register-policy > p > span {
+  margin-left: 4px;
+  background: -webkit-linear-gradient(#5b86e5, #36d1dc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #36d1dc;
+  cursor: pointer;
+}
+
+.register-policy > p > span:hover {
+  border-bottom: 1px solid #5b86e5;
+}

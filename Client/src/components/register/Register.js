@@ -1,10 +1,9 @@
 import React from "react";
 import "./register.css";
 import { connect } from "react-redux";
-import { setRegisterForm } from "../../actions/registerForm";
-import { SET_REGISTER_FORM } from "../../actions/Types";
+import { SET_REGISTER_FORM, SET_TERMS_OF_SERVICE } from "../../actions/Types";
 
-const Register = ({ setRegisterForm }) => {
+const Register = ({ setRegisterForm, setTermsOfService }) => {
   return (
     <form className="register-form">
       <h3 className="register-form-header">
@@ -26,7 +25,12 @@ const Register = ({ setRegisterForm }) => {
       </div>
       <div className="register-policy">
         <input type="checkbox" />
-        <p>I agreen to the Terms of Service & Privacy Policy</p>
+        <p>
+          I agreen to the
+          <span onClick={setTermsOfService}>
+            Terms of Service & Privacy Policy
+          </span>
+        </p>
       </div>
       <div className="register-button">SIGN UP</div>
       <div className="register-return-button" onClick={setRegisterForm}>
@@ -39,11 +43,14 @@ const Register = ({ setRegisterForm }) => {
 const mapStateToProps = (state) => {
   return {
     registerForm: state.registerForm,
+    termsOfService: state.termsOfService,
   };
 };
+
 const mapDispatchToProps = (dispatch) => {
   return {
     setRegisterForm: () => dispatch({ type: SET_REGISTER_FORM }),
+    setTermsOfService: () => dispatch({ type: SET_TERMS_OF_SERVICE }),
   };
 };
 
