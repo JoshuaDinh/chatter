@@ -9,9 +9,8 @@ const Conversation = require("../../models/Conversations");
 router.post("/", async (req, res) => {
   // Create new conversation object
   const newConversation = await new Conversation({
-    members: [req.senderId, req.recieverId],
+    members: [req.body.senderId, req.body.recieverId],
   });
-
   // save conversation to db
   try {
     const savedConversation = await newConversation.save();
