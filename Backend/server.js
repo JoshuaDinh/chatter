@@ -6,6 +6,7 @@ const cors = require("cors");
 const conversationRoute = require("./routes/api/conversations");
 const userRoute = require("./routes/api/user");
 const authRoute = require("./routes/api/auth");
+const messageRoute = require("./routes/api/messages");
 
 // initialize app config
 const app = express();
@@ -21,6 +22,7 @@ app.get("/", (req, res) => res.status(200).send("hello world"));
 app.use("/api/conversations", conversationRoute);
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/messages", messageRoute);
 
 // listen
 app.listen(port, console.log("we are running on " + port));
