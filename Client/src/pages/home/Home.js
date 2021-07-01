@@ -3,6 +3,7 @@ import "./home.css";
 import Login from "../../components/login/Login";
 import Register from "../../components/register/Register";
 import TermsOfService from "../../components/TermsOfService/TermsOfService";
+import Alert from "../../components/alert/Alert";
 import homeImage from "../../images/homeImage.svg";
 import { connect } from "react-redux";
 
@@ -23,6 +24,7 @@ const Home = ({ registerForm, termsOfService }) => {
           <span className="home-dot-animation">.</span>
           <span className="home-dot-animation">.</span>
         </div>
+        <Alert />
         {registerForm ? <Register /> : <Login />}
         {termsOfService && <TermsOfService />}
       </div>

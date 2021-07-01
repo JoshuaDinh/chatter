@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./register.css";
 import { v4 as uuidv4, v4 } from "uuid";
-
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
   SET_REGISTER_FORM,
@@ -110,6 +110,10 @@ const Register = ({ setRegisterForm, setTermsOfService, setAlert }) => {
       </div>
     </form>
   );
+};
+
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
