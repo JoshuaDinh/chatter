@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import "./register.css";
-import { connect } from "react-redux";
-import { SET_REGISTER_FORM, SET_TERMS_OF_SERVICE } from "../../actions/Types";
+import { v4 as uuidv4, v4 } from "uuid";
 
-const Register = ({ setRegisterForm, setTermsOfService }) => {
+import { connect } from "react-redux";
+import {
+  SET_REGISTER_FORM,
+  SET_TERMS_OF_SERVICE,
+  SET_ALERT,
+} from "../../actions/Types";
+
+const Register = ({ setRegisterForm, setTermsOfService, setAlert }) => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -21,14 +27,20 @@ const Register = ({ setRegisterForm, setTermsOfService }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
-      console.log("npo match");
+      setAlert({
+        msg: "Passwords do not match",
+        alertType: "danger",
+        id: v4(),
+      });
     } else {
+      const newUser = { username, email, password };
+
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newUser),
+      };
       try {
-        const requestOptions = {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username, email, password }),
-        };
         const res = await fetch(
           "http://localhost:3000/api/user/register",
           requestOptions
@@ -104,6 +116,7 @@ const mapStateToProps = (state) => {
   return {
     registerForm: state.registerForm,
     termsOfService: state.termsOfService,
+    setAlert: state.alert,
   };
 };
 
@@ -111,6 +124,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setRegisterForm: () => dispatch({ type: SET_REGISTER_FORM }),
     setTermsOfService: () => dispatch({ type: SET_TERMS_OF_SERVICE }),
+    setAlert: (msg, alertType) =>
+      dispatch({ type: SET_ALERT, payload: msg, alertType }),
   };
 };
 

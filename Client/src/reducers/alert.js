@@ -1,4 +1,5 @@
 import { SET_ALERT, REMOVE_ALERT } from "../actions/Types.js";
+
 const initialState = [];
 
 const alertState = (state = initialState, action) => {
