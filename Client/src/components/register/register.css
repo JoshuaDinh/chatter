@@ -14,6 +14,7 @@
 
 .register-form-header > span {
   background: -webkit-linear-gradient(#5b86e5, #36d1dc);
+  font-size: 1.6rem;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: #36d1dc;

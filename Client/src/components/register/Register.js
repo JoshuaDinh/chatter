@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./register.css";
-import { v4 as uuidv4, v4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
@@ -30,7 +30,7 @@ const Register = ({ setRegisterForm, setTermsOfService, setAlert }) => {
       setAlert({
         msg: "Passwords do not match",
         alertType: "danger",
-        id: v4(),
+        id: uuidv4(),
       });
     } else {
       const newUser = { username, email, password };
@@ -120,7 +120,7 @@ const mapStateToProps = (state) => {
   return {
     registerForm: state.registerForm,
     termsOfService: state.termsOfService,
-    setAlert: state.alert,
+    alert: state.alert,
   };
 };
 
@@ -128,8 +128,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setRegisterForm: () => dispatch({ type: SET_REGISTER_FORM }),
     setTermsOfService: () => dispatch({ type: SET_TERMS_OF_SERVICE }),
-    setAlert: (msg, alertType) =>
-      dispatch({ type: SET_ALERT, payload: msg, alertType }),
+    setAlert: () => dispatch({ type: SET_ALERT }),
   };
 };
 

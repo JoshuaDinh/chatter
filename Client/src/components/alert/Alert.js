@@ -7,7 +7,11 @@ const Alert = ({ alerts }) =>
   alerts !== null &&
   alerts.length > 0 &&
   alerts.map((alert) => {
-    return <div key={alert.id} className="alert"></div>;
+    return (
+      <div key={alert.id} className="alert">
+        <div className="alert-message">{alert.msg}</div>
+      </div>
+    );
   });
 
 Alert.propTypes = { alerts: PropTypes.array.isRequired };
