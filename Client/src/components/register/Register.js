@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import "./register.css";
-import { v4 as uuidv4 } from "uuid";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  SET_REGISTER_FORM,
-  SET_TERMS_OF_SERVICE,
-  SET_ALERT,
-} from "../../actions/Types";
+import { register } from "../../actions/auth";
+import { setAlert } from "../../actions/alert";
+import { setRegisterForm } from "../../actions/registerForm";
+import { setTermsOfService } from "../../actions/termsOfService";
 
-const Register = ({ setRegisterForm, setTermsOfService, setAlert }) => {
+const Register = ({
+  setRegisterForm,
+  setTermsOfService,
+  setAlert,
+  register,
+}) => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -27,28 +30,9 @@ const Register = ({ setRegisterForm, setTermsOfService, setAlert }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
-      setAlert({
-        msg: "Passwords do not match",
-        alertType: "danger",
-        id: uuidv4(),
-      });
+      setAlert("Passwords do not match", "danger");
     } else {
-      const newUser = { username, email, password };
-
-      const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newUser),
-      };
-      try {
-        const res = await fetch(
-          "http://localhost:3000/api/user/register",
-          requestOptions
-        );
-        console.log(res);
-      } catch (err) {
-        alert(err);
-      }
+      register({ username, email, password });
     }
   };
 
@@ -65,7 +49,7 @@ const Register = ({ setRegisterForm, setTermsOfService, setAlert }) => {
           name="username"
           onChange={(e) => updateFormData(e)}
           value={username}
-          required
+          // required
         />
         <input
           className="register-input"
@@ -74,7 +58,7 @@ const Register = ({ setRegisterForm, setTermsOfService, setAlert }) => {
           name="email"
           onChange={(e) => updateFormData(e)}
           value={email}
-          required
+          // required
         />
         <input
           className="register-input"
@@ -99,37 +83,27 @@ const Register = ({ setRegisterForm, setTermsOfService, setAlert }) => {
         <input type="checkbox" />
         <p>
           I agreen to the
-          <span onClick={setTermsOfService}>
-            Terms of Service & Privacy Policy
-          </span>
+          <span>Terms of Service & Privacy Policy</span>
         </p>
       </div>
       <input className="register-button" type="submit" value="Sign Up" />
-      <div className="register-return-button" onClick={setRegisterForm}>
-        Already have an account?
-      </div>
+      <div className="register-return-button">Already have an account?</div>
     </form>
   );
 };
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    registerForm: state.registerForm,
-    termsOfService: state.termsOfService,
     alert: state.alert,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setRegisterForm: () => dispatch({ type: SET_REGISTER_FORM }),
-    setTermsOfService: () => dispatch({ type: SET_TERMS_OF_SERVICE }),
-    setAlert: () => dispatch({ type: SET_ALERT }),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, {
+  register,
+  setAlert,
+})(Register);

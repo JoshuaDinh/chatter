@@ -24,7 +24,7 @@ const Home = ({ registerForm, termsOfService }) => {
           <span className="home-dot-animation">.</span>
           <span className="home-dot-animation">.</span>
         </div>
-        {/* <Alert /> */}
+        {alert ? <Alert /> : null}
         {/* {registerForm ? <Register /> : <Login />} */}
         <Register />
         {termsOfService && <TermsOfService />}
@@ -37,6 +37,7 @@ const mapStateToProps = (state) => {
   return {
     registerForm: state.registerForm,
     termsOfService: state.termsOfService,
+    alert: state.alert,
   };
 };
 
