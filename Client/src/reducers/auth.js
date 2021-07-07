@@ -7,18 +7,18 @@ const initialState = {
   user: null,
 };
 
-export default (state = initialState, action) => {
-  const { action, type } = action;
+const auth = (state = initialState, action) => {
+  const { payload, type } = action;
   switch (type) {
     case REGISTER_SUCCESS:
-      localStorage.Storage.setItem("token", payload.token);
+      localStorage.setItem("token", payload.token);
       return {
         ...state,
         ...payload,
         isAuthenticated: true,
         loading: false,
       };
-    case RESITER_FAIL:
+    case REGISTER_FAIL:
       localStorage.removeItem("token");
       return {
         ...state,
@@ -30,3 +30,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default auth;

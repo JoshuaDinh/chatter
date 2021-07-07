@@ -49,7 +49,7 @@ const Register = ({
           name="username"
           onChange={(e) => updateFormData(e)}
           value={username}
-          // required
+          required
         />
         <input
           className="register-input"
@@ -58,7 +58,7 @@ const Register = ({
           name="email"
           onChange={(e) => updateFormData(e)}
           value={email}
-          // required
+          required
         />
         <input
           className="register-input"
