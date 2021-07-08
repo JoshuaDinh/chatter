@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
       res
         .status(404)
         .json(
-          "Invalid Credentials, please check that your username & password are correct"
+          "Invalid Credentials, please check that your email & password are correct"
         );
     }
 
@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
       res
         .status(400)
         .json(
-          "Invalid Credentials, please  check that your username & password are correct"
+          "Invalid Credentials, please  check that your email & password are correct"
         );
 
     // Json WebToken
@@ -58,7 +58,7 @@ router.post("/", async (req, res) => {
 // @desc
 // @access Public
 
-router.get("/api/auth", auth, async (req, res) => {
+router.get("/", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
     res.json(user);
