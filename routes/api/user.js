@@ -71,7 +71,7 @@ router.put("/:id", auth, async (req, res) => {
         // Hash specific users password
         req.body.password = await bcrypt.hashSync(req.body.password, salt);
       } catch (err) {
-        return res.status(500).json(err);
+        return res.status(500).json({ err });
       }
 
       // Updated information
@@ -81,11 +81,13 @@ router.put("/:id", auth, async (req, res) => {
         });
         res.status(200).json("Account has been updated");
       } catch (err) {
-        return res.status(500).json(err);
+        return res.status(500).json({ err });
       }
     }
   } else {
-    return res.status(403).json("Please make sure you are logged in");
+    return res
+      .status(403)
+      .json({ error: "Please make sure you are logged in" });
   }
 });
 
@@ -100,12 +102,12 @@ router.delete("/:id", auth, async (req, res) => {
       let user = await User.findByIdAndDelete(req.params.id, {
         $set: req.body,
       });
-      res.status(200).json("Account has been deleted");
+      res.status(200).json({ error: "Account has been deleted" });
     } catch (err) {
       return res.status(500).json(err);
     }
   } else {
-    return res.status(403).json("You can only delete your account.");
+    return res.status(403).json({ error: "You can only delete your account" });
   }
 });
 
@@ -120,7 +122,7 @@ router.get("/:id", async (req, res) => {
     const { password, id, ...other } = user._doc;
     res.status(200).json(other);
   } catch (err) {
-    return res.status(500).json(err);
+    return res.status(500).json({ err });
   }
 });
 
@@ -140,7 +142,7 @@ router.put("/:id/addFriend", async (req, res) => {
         await currentUser.updateOne({
           $push: { friendsList: user._id },
         });
-        res.status(200).json("Account has been added as a friend");
+        res.status(200).json({ error: "Account has been added as a friend" });
       } else {
         res.status(403).json("You are already friends");
       }
@@ -148,7 +150,7 @@ router.put("/:id/addFriend", async (req, res) => {
       return res.status(500).json(err);
     }
   } else {
-    res.status(403).json("You cant add your self as a friend");
+    res.status(403).json({ error: "You cant add your self as a friend" });
   }
 });
 
@@ -168,15 +170,17 @@ router.put("/:id/deleteFriend", async (req, res) => {
         await currentUser.updateOne({
           $pull: { friendsList: user._id },
         });
-        res.status(200).json("Account has been removed from friends");
+        res
+          .status(200)
+          .json({ error: "Account has been removed from friends" });
       } else {
-        res.status(403).json("You can not unfriend your self");
+        res.status(403).json({ error: "You can not unfriend your self" });
       }
     } catch (err) {
       return res.status(500).json(err);
     }
   } else {
-    res.status(403).json("You cant add your self as a friend");
+    res.status(403).json({ error: "You cant add your self as a friend" });
   }
 });
 
