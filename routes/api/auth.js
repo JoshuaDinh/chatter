@@ -45,11 +45,11 @@ router.post("/", async (req, res) => {
       { expiresIn: 3600 },
       (err, token) => {
         if (err) throw err;
-        res.status(200).json({ token });
+        res.status(200).json({ success: true, token: "Bearer", token });
       }
     );
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({ err });
   }
 });
 

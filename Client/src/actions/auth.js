@@ -1,5 +1,5 @@
 import { REGISTER_SUCCESS, REGISTER_FAIL } from "./Types";
-// import { setAlert } from "./alert";
+import { setAlert } from "./alert";
 
 // Register User
 export const register = ({ username, email, password }) => async (dispatch) => {
