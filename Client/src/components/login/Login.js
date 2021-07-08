@@ -61,7 +61,7 @@ Login.propTypes = {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth.isAuthenticated,
-    registerForm: state.registerForm,
+    registerForm: state.registerForm.toggle,
   };
 };
 
