@@ -4,6 +4,7 @@ const User = require("../../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
+const auth = require("../../middleware/token");
 
 // @route Post /api/auth
 // @desc Login user & get token
@@ -50,6 +51,19 @@ router.post("/", async (req, res) => {
     );
   } catch (err) {
     res.status(500).json({ err });
+  }
+});
+
+// @route Get /api/auth
+// @desc
+// @access Public
+
+router.get("/api/auth", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    res.json(user);
+  } catch (err) {
+    res.status(500).send("Server Error");
   }
 });
 

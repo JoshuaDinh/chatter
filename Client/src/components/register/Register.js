@@ -39,7 +39,6 @@ const Register = ({
 
   return (
     <form className="register-form" onSubmit={(e) => onSubmit(e)}>
-      {" "}
       <Alert />
       <h3 className="register-form-header">
         <span>Welcome!</span> please fill out the items below
