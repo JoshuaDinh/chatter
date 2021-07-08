@@ -3,7 +3,6 @@ import "./home.css";
 import Login from "../../components/login/Login";
 import Register from "../../components/register/Register";
 import TermsOfService from "../../components/TermsOfService/TermsOfService";
-import Alert from "../../components/alert/Alert";
 import homeImage from "../../images/homeImage.svg";
 import { connect } from "react-redux";
 
@@ -24,7 +23,6 @@ const Home = ({ registerForm, termsOfService }) => {
           <span className="home-dot-animation">.</span>
           <span className="home-dot-animation">.</span>
         </div>
-        {alert ? <Alert /> : null}
         {/* {registerForm ? <Register /> : <Login />} */}
         <Register />
         {termsOfService && <TermsOfService />}
@@ -37,7 +35,6 @@ const mapStateToProps = (state) => {
   return {
     registerForm: state.registerForm,
     termsOfService: state.termsOfService,
-    alert: state.alert,
   };
 };
 

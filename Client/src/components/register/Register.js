@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./register.css";
+import Alert from "../../components/alert/Alert";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { register } from "../../actions/auth";
@@ -38,6 +39,8 @@ const Register = ({
 
   return (
     <form className="register-form" onSubmit={(e) => onSubmit(e)}>
+      {" "}
+      <Alert />
       <h3 className="register-form-header">
         <span>Welcome!</span> please fill out the items below
       </h3>
