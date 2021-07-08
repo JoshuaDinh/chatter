@@ -7,6 +7,7 @@ import { register } from "../../actions/auth";
 import { setAlert } from "../../actions/alert";
 import { setRegisterForm } from "../../actions/registerForm";
 import { setTermsOfService } from "../../actions/termsOfService";
+import { SET_TERMS_OF_SERVICE } from "../../actions/Types";
 
 const Register = ({
   setRegisterForm,
@@ -85,7 +86,9 @@ const Register = ({
         <input type="checkbox" />
         <p>
           I agreen to the
-          <span>Terms of Service & Privacy Policy</span>
+          <span onClick={() => setTermsOfService()}>
+            Terms of Service & Privacy Policy
+          </span>
         </p>
       </div>
       <input className="register-button" type="submit" value="Sign Up" />
@@ -108,4 +111,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   register,
   setAlert,
+  setTermsOfService,
 })(Register);

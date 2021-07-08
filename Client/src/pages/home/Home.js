@@ -5,6 +5,7 @@ import Register from "../../components/register/Register";
 import TermsOfService from "../../components/TermsOfService/TermsOfService";
 import homeImage from "../../images/homeImage.svg";
 import { connect } from "react-redux";
+import { setRegisterForm } from "../../actions/registerForm";
 
 const Home = ({ registerForm, termsOfService }) => {
   return (
@@ -23,9 +24,8 @@ const Home = ({ registerForm, termsOfService }) => {
           <span className="home-dot-animation">.</span>
           <span className="home-dot-animation">.</span>
         </div>
-        {/* {registerForm ? <Register /> : <Login />} */}
-        <Login />
-        {termsOfService && <TermsOfService />}
+        <Register />
+        {termsOfService === true && <TermsOfService />}
       </div>
     </div>
   );
@@ -34,7 +34,7 @@ const Home = ({ registerForm, termsOfService }) => {
 const mapStateToProps = (state) => {
   return {
     registerForm: state.registerForm,
-    termsOfService: state.termsOfService,
+    termsOfService: state.termsOfService.termsOfService,
   };
 };
 

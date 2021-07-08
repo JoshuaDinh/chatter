@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./login.css";
 import { connect } from "react-redux";
 import { setRegisterForm } from "../../actions/registerForm";
-import { SET_REGISTER_FORM } from "../../actions/Types";
 import { login } from "../../actions/auth";
 import { PropTypes } from "prop-types";
 
@@ -62,7 +61,8 @@ Login.propTypes = {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth.isAuthenticated,
+    registerForm: state.registerForm,
   };
 };
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { login, setRegisterForm })(Login);
