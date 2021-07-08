@@ -21,11 +21,6 @@ const Navigation = ({ Logout, isAuthenticated }) => {
   );
 };
 
-Navigation.propTypes = {
-  logout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-};
-
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
