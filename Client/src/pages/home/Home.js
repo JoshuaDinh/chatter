@@ -34,7 +34,7 @@ const Home = ({ registerForm, termsOfService }) => {
 const mapStateToProps = (state) => {
   return {
     registerForm: state.registerForm,
-    termsOfService: state.termsOfService.termsOfService,
+    termsOfService: state.termsOfService.toggle,
   };
 };
 
