@@ -8,17 +8,18 @@ import AttachFileIcon from "@material-ui/icons/AttachFile";
 import SendIcon from "@material-ui/icons/Send";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
+import { connect } from "react-redux";
+import { fetchConversations } from "../../actions/conversations";
 
-const Messenger = () => {
-  const [] = useState("");
-  useEffect(() => {
-    const fetchData = async () => {
-      const messages = fetch(
-        "http://localhost:3000/api/messages/60dbb965125d8e3d2a52353d"
-      );
-    };
-    fetchData();
-  }, []);
+const Messenger = ({
+  userId,
+  fetchConversations,
+  isAuthenticated,
+  isLoading,
+}) => {
+  if (isAuthenticated && isLoading === false) {
+    fetchConversations(userId?._id);
+  }
   return (
     <div className="messenger">
       <div className="chat-menu">
@@ -77,4 +78,12 @@ const Messenger = () => {
   );
 };
 
-export default Messenger;
+const mapStateToProps = (state) => {
+  return {
+    userId: state.auth.user,
+    isAuthenticated: state.auth.isAuthenticated,
+    isLoading: state.auth.loading,
+  };
+};
+
+export default connect(mapStateToProps, { fetchConversations })(Messenger);
