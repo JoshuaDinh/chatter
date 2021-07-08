@@ -1,5 +1,6 @@
 .navigation {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   height: 8vh;
   width: 100vw;
@@ -17,7 +18,18 @@
 }
 
 .navigation > h1 {
-  margin-left: 25px;
+  margin-left: 30px;
   font-size: 2.7rem;
   color: white;
+}
+
+.navigation-log-out {
+  width: 7%;
+  margin-right: 75px;
+  padding: 9px;
+  background: whitesmoke;
+  border: 2px solid #5b86e5;
+  border-radius: 999px;
+  text-align: center;
+  cursor: pointer;
 }
