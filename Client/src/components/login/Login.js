@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./login.css";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { setRegisterForm } from "../../actions/registerForm";
 import { login } from "../../actions/auth";
 import { PropTypes } from "prop-types";
 
-const Login = ({ setRegisterForm, login }) => {
+const Login = ({ setRegisterForm, login, auth }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -21,6 +22,11 @@ const Login = ({ setRegisterForm, login }) => {
     e.preventDefault();
     login({ email, password });
   };
+
+  // Redirect if logged in
+  if (auth === true) {
+    return <Redirect to="/messenger" />;
+  }
 
   return (
     <form className="login-form" onSubmit={(e) => onSubmit(e)}>
@@ -56,6 +62,7 @@ const Login = ({ setRegisterForm, login }) => {
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => {

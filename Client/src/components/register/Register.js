@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./register.css";
 import Alert from "../../components/alert/Alert";
 import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { register } from "../../actions/auth";
 import { setAlert } from "../../actions/alert";
@@ -13,6 +14,7 @@ const Register = ({
   setTermsOfService,
   setAlert,
   register,
+  auth,
 }) => {
   const [formData, setFormData] = useState({
     username: "",
@@ -36,6 +38,11 @@ const Register = ({
       register({ username, email, password });
     }
   };
+
+  // Redirect if succesful register
+  if (auth === true) {
+    return <Redirect to="/messenger" />;
+  }
 
   return (
     <form className="register-form" onSubmit={(e) => onSubmit(e)}>
@@ -101,11 +108,13 @@ const Register = ({
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => {
   return {
     alert: state.alert,
+    auth: state.auth.isAuthenticated,
   };
 };
 
