@@ -6,7 +6,7 @@ import { setRegisterForm } from "../../actions/registerForm";
 import { login } from "../../actions/auth";
 import { PropTypes } from "prop-types";
 
-const Login = ({ setRegisterForm, login, auth }) => {
+const Login = ({ setRegisterForm, login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -24,7 +24,7 @@ const Login = ({ setRegisterForm, login, auth }) => {
   };
 
   // Redirect if logged in
-  if (auth === true) {
+  if (isAuthenticated) {
     return <Redirect to="/messenger" />;
   }
 
@@ -67,7 +67,7 @@ Login.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth.isAuthenticated,
+    isAuthenticated: state.auth.isAuthenticated,
     registerForm: state.registerForm.toggle,
   };
 };

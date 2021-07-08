@@ -14,7 +14,7 @@ const Register = ({
   setTermsOfService,
   setAlert,
   register,
-  auth,
+  isAuthenticated,
 }) => {
   const [formData, setFormData] = useState({
     username: "",
@@ -40,7 +40,7 @@ const Register = ({
   };
 
   // Redirect if succesful register
-  if (auth === true) {
+  if (isAuthenticated) {
     return <Redirect to="/messenger" />;
   }
 
@@ -114,7 +114,7 @@ Register.propTypes = {
 const mapStateToProps = (state) => {
   return {
     alert: state.alert,
-    auth: state.auth.isAuthenticated,
+    inAuthenticated: state.auth.isAuthenticated,
   };
 };
 
