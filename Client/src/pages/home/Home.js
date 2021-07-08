@@ -24,7 +24,7 @@ const Home = ({ registerForm, termsOfService }) => {
           <span className="home-dot-animation">.</span>
         </div>
         {/* {registerForm ? <Register /> : <Login />} */}
-        <Register />
+        <Login />
         {termsOfService && <TermsOfService />}
       </div>
     </div>

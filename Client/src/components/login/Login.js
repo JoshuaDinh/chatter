@@ -1,21 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import "./login.css";
 import { connect } from "react-redux";
 import { setRegisterForm } from "../../actions/registerForm";
 import { SET_REGISTER_FORM } from "../../actions/Types";
+import { login } from "../../actions/auth";
+import { PropTypes } from "prop-types";
 
-const Login = ({ setRegisterForm }) => {
+const Login = ({ setRegisterForm, login }) => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = formData;
+
+  // Update formData based off of name attributes on input fields
+  const updateFormData = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    login({ email, password });
+  };
+
   return (
-    <form className="login-form">
+    <form className="login-form" onSubmit={(e) => onSubmit(e)}>
       <h3 className="login-form-header">
         <span>Login</span> to your account
       </h3>
       <div className="login-input-wrapper">
-        <input className="login-input" type="text" placeholder="Email" />
-        <input className="login-input" type="password" placeholder="Password" />
+        <input
+          className="login-input"
+          type="text"
+          placeholder="Email"
+          name="email"
+          value={email}
+          onChange={(e) => updateFormData(e)}
+        />
+        <input
+          className="login-input"
+          type="password"
+          placeholder="Password"
+          name="password"
+          value={password}
+          onChange={(e) => updateFormData(e)}
+        />
       </div>
-      <h5 className="login-forgot-password">Forgot Password?</h5>
-      <div className="login-button">Login</div>
+      <h5 className="login-forgot-password">Forgot Password?</h5>{" "}
+      <input className="login-button" type="submit" value="Sign In" />
       <div className="login-create-account-button" onClick={setRegisterForm}>
         Create Account
       </div>
@@ -23,15 +55,14 @@ const Login = ({ setRegisterForm }) => {
   );
 };
 
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = (state) => {
   return {
-    registerForm: state.registerForm,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setRegisterForm: () => dispatch({ type: SET_REGISTER_FORM }),
+    auth: state.auth.isAuthenticated,
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, { login })(Login);
