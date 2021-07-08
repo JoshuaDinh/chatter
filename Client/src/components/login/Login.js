@@ -44,7 +44,7 @@ const Login = ({ setRegisterForm, login, isAuthenticated }) => {
         />
         <input
           className="login-input"
-          type="password"
+          type="current-password"
           placeholder="Password"
           name="password"
           value={password}

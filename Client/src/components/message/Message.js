@@ -1,6 +1,6 @@
 import React from "react";
 import "./message.css";
-import SearchIcon from "@material-ui/icons/Search";
+// import SearchIcon from "@material-ui/icons/Search";
 
 const Message = ({ own }) => {
   return (

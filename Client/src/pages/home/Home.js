@@ -5,7 +5,6 @@ import Register from "../../components/register/Register";
 import TermsOfService from "../../components/TermsOfService/TermsOfService";
 import homeImage from "../../images/homeImage.svg";
 import { connect } from "react-redux";
-import { setRegisterForm } from "../../actions/registerForm";
 
 const Home = ({ registerForm, termsOfService }) => {
   return (

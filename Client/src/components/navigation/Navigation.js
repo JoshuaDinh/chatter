@@ -1,7 +1,6 @@
 import React from "react";
 import "./navigation.css";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import { Logout } from "../../actions/auth";
 import { Redirect } from "react-router-dom";
 
