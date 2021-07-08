@@ -5,55 +5,73 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
 const auth = require("../../middleware/token");
+const { check, validationResult } = require("express-validator");
 
 // @route Post /api/user/register
 // @desc Register/create a new user account
 // @access Private
 
-router.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
-  try {
-    // See if user exists
-    let user = await User.findOne({ email });
-    if (user) {
-      return res.status(400).json({ error: "Email already exists" });
+router.post(
+  "/register",
+  [
+    check("username", "username is required").not().isEmpty(),
+    check("email", "Please include a valid Email").isEmail(),
+    check(
+      "password",
+      "Please enter a password with 6 or more characters"
+    ).isLength({ min: 6 }),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(500).json({ errors: errors.array() });
     }
 
-    //Create User instance
-    user = new User({
-      username,
-      email,
-      password,
-    });
+    const { username, email, password } = req.body;
 
-    // Encrypt password
-    const salt = await bcrypt.genSaltSync(10);
-    // Hash specific users password
-    user.password = await bcrypt.hashSync(password, salt);
-
-    // Save new user to database
-    await user.save();
-
-    // Json WebToken
-    const payload = {
-      user: {
-        id: user.id,
-      },
-    };
-
-    jwt.sign(
-      payload,
-      config.get("jwtSecret"),
-      { expiresIn: 3600 },
-      (err, token) => {
-        if (err) throw err;
-        res.status(200).json({ success: true, token: "Bearer", token });
+    try {
+      // See if user exists
+      let user = await User.findOne({ email });
+      if (user) {
+        return res.status(500).json({ error: "Email already exists" });
       }
-    );
-  } catch (err) {
-    res.status(500).json(err);
+
+      //Create User instance
+      user = new User({
+        username,
+        email,
+        password,
+      });
+
+      // Encrypt password
+      const salt = await bcrypt.genSaltSync(10);
+      // Hash specific users password
+      user.password = await bcrypt.hashSync(password, salt);
+
+      // Save new user to database
+      await user.save();
+
+      // Json WebToken
+      const payload = {
+        user: {
+          id: user.id,
+        },
+      };
+
+      jwt.sign(
+        payload,
+        config.get("jwtSecret"),
+        { expiresIn: 3600 },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ success: true, token: "Bearer", token });
+        }
+      );
+    } catch (err) {
+      res.status(500).send("server error");
+    }
   }
-});
+);
 
 // @route Put /api/user/id
 // @desc Update User info

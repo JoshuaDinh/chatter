@@ -1,19 +1,25 @@
 import { REGISTER_SUCCESS, REGISTER_FAIL } from "./Types";
 import { setAlert } from "./alert";
+import axios from "axios";
 
 // Register User
 export const register = ({ username, email, password }) => async (dispatch) => {
-  const newUser = { username, email, password };
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newUser),
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
   };
+
+  const body = JSON.stringify({ username, email, password });
   try {
-    const fetchData = await fetch("/api/user/register", requestOptions);
-    const response = await fetchData.json();
-    dispatch({ type: REGISTER_SUCCESS, payload: response });
+    const response = await axios.post("/api/user/register", body, config);
+    dispatch({ type: REGISTER_SUCCESS, payload: response.data });
   } catch (err) {
+    const errors = err.response.data;
+    if (errors) {
+      dispatch(setAlert(errors.error, "danger"));
+    }
+    console.log(errors.error);
     dispatch({ type: REGISTER_FAIL });
   }
 };
