@@ -16,6 +16,10 @@
   cursor: pointer;
 }
 
+.chat-online-friend:hover {
+  box-shadow: #5b86e5 0px 2px 4px, #36d1dc 0px 2px 4px;
+}
+
 .chat-online-avatar {
   height: 3em;
   width: 3em;
