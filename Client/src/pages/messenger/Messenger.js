@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./messenger.css";
 import Conversations from "../../components/conversations/Conversations";
 import ChatOnline from "../../components/chatOnline/ChatOnline";
@@ -16,26 +16,36 @@ import { setCurrentChat } from "../../actions/currentChat";
 import conversations from "../../reducers/conversations";
 import AddIcon from "@material-ui/icons/Add";
 import { io } from "socket.io-client";
+
 const Messenger = ({
   conversations,
   fetchConversations,
   fetchMessages,
-  userId,
+  user,
   messages,
   addMessage,
 }) => {
   const [chatId, setChatId] = useState(null);
   const [socekt, setSocket] = useState(null);
   const [newMessage, setNewMessage] = useState("");
+  const socket = useRef();
 
   useEffect(() => {
-    setSocket(io("ws://localhost:8900"));
+    socket.current = io("ws://localhost:8900");
   }, []);
+
+  useEffect(() => {
+    // emit to socket server - conditional: redux store causing user to show null after intialization, creating an additional socket id
+    if (user !== null) {
+      socket.current.emit("addUser", user?._id);
+      socket.current.on("getUsers", (users) => console.log(users));
+    }
+  }, [user]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const message = {
-      sender: userId._id,
+      sender: user._id,
       message: newMessage,
       conversationId: chatId,
     };
@@ -45,10 +55,10 @@ const Messenger = ({
 
   // Fecth conversations by userId after store is loaded userid !=null
   useEffect(() => {
-    if (userId !== null) {
-      fetchConversations(userId._id);
+    if (user !== null) {
+      fetchConversations(user._id);
     }
-  }, [userId]);
+  }, [user]);
 
   // Fetch Messages by onClick
   useEffect(() => {
@@ -77,7 +87,7 @@ const Messenger = ({
           {conversations.map((c) => {
             return (
               <div onClick={() => setChatId(c._id)}>
-                <Conversations conversation={c} currentUser={userId} />;
+                <Conversations conversation={c} currentUser={user} />;
               </div>
             );
           })}
@@ -88,9 +98,7 @@ const Messenger = ({
           {chatId ? (
             <div className="chat-box-top">
               {messages?.map((msg) => {
-                return (
-                  <Message message={msg} own={msg.sender === userId._id} />
-                );
+                return <Message message={msg} own={msg.sender === user._id} />;
               })}
             </div>
           ) : (
@@ -130,7 +138,7 @@ const Messenger = ({
 };
 const mapStateToProps = (state) => {
   return {
-    userId: state.auth.user,
+    user: state.auth.user,
     conversations: state.conversations.conversations,
     messages: state.messages.messages,
   };
