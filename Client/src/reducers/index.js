@@ -5,6 +5,8 @@ import termsOfService from "./termsOfService";
 import auth from "./auth";
 import conversations from "./conversations";
 import user from "./user";
+import messages from "./messages";
+import currentChat from "./currentChat";
 
 export default combineReducers({
   alert,
@@ -13,4 +15,6 @@ export default combineReducers({
   auth,
   conversations,
   user,
+  messages,
+  currentChat,
 });
