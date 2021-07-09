@@ -10,7 +10,7 @@ import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
 import { connect } from "react-redux";
 import { fetchConversations } from "../../actions/conversations";
-import { fetchUser } from "../../actions/user";
+import { setCurrentChat } from "../../actions/currentChat";
 import conversations from "../../reducers/conversations";
 import AddIcon from "@material-ui/icons/Add";
 
@@ -19,6 +19,7 @@ const Messenger = ({
   fetchConversations,
   userId,
   currentChat,
+  setCurrentChat,
 }) => {
   // Fecth conversations by userId after store is loaded userid !=null
   useEffect(() => {
@@ -26,6 +27,9 @@ const Messenger = ({
       fetchConversations(userId._id);
     }
   }, [userId]);
+
+  // Fetch Messages by onClick
+  useEffect(() => {}, []);
 
   return (
     <div className="messenger">
@@ -46,7 +50,11 @@ const Messenger = ({
             />
           </form>
           {conversations.map((c) => {
-            return <Conversations conversation={c} currentUser={userId} />;
+            return (
+              <div onClick={() => setCurrentChat(c._id)}>
+                <Conversations conversation={c} currentUser={userId} />;
+              </div>
+            );
           })}
         </div>
       </div>
@@ -104,6 +112,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchConversations, fetchUser })(
+export default connect(mapStateToProps, { fetchConversations, setCurrentChat })(
   Messenger
 );
