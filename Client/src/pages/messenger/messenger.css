@@ -50,6 +50,10 @@
 
 .chat-box-top {
   padding: 40px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   overflow-y: scroll;
 }
 
@@ -59,7 +63,7 @@
   justify-content: space-between;
   padding: 20px;
   margin-top: 5px;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   background: #fff;

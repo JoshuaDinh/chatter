@@ -2,12 +2,15 @@ import React, { useEffect } from "react";
 import "./conversations.css";
 import { connect } from "react-redux";
 import { fetchUser } from "../../actions/user";
+import user from "../../reducers/user";
 
-const Conversations = ({ conversation, currentUser, fetchUser }) => {
+const Conversations = ({ conversation, currentUser, fetchUser, user }) => {
   useEffect(() => {
     const friendId = conversation.members.find((m) => m !== currentUser);
-    fetchUser(friendId);
-  }, []);
+    if (user !== null) {
+      fetchUser(friendId);
+    }
+  }, [currentUser, conversation]);
   return (
     <div className="conversations">
       <img
@@ -16,7 +19,7 @@ const Conversations = ({ conversation, currentUser, fetchUser }) => {
         className="conversations-avatar"
       />
       <div className="conversations-info">
-        <span>Joshua Dinh</span>
+        <span>{user?.username}</span>
         <p>Lorem ipsum dolor sit amet.</p>
       </div>
       <div className="conversations-new-message">
@@ -26,4 +29,10 @@ const Conversations = ({ conversation, currentUser, fetchUser }) => {
   );
 };
 
-export default connect(null, { fetchUser })(Conversations);
+const mapStateToProps = (state) => {
+  return {
+    user: state.user.user,
+  };
+};
+
+export default connect(mapStateToProps, { fetchUser })(Conversations);
