@@ -10,19 +10,22 @@ import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
 import { connect } from "react-redux";
 import { fetchConversations } from "../../actions/conversations";
+import conversations from "../../reducers/conversations";
 
 const Messenger = ({
-  userId,
+  conversations,
   fetchConversations,
   isAuthenticated,
   isLoading,
 }) => {
+  console.log(conversations);
+
   // Fecth conversations by userId after authenticated & finished loading
   useEffect(() => {
     if (isAuthenticated && isLoading === false) {
       fetchConversations();
     }
-  }, [isAuthenticated]);
+  }, []);
   return (
     <div className="messenger">
       <div className="chat-menu">
@@ -35,11 +38,9 @@ const Messenger = ({
               className="chat-menu-input"
             />
           </form>
-          <Conversations />
-          <Conversations />
-          <Conversations />
-          <Conversations />
-          <Conversations />
+          {conversations.map((conversation) => {
+            return <Conversations />;
+          })}
         </div>
       </div>
       <div className="chat-box">
@@ -80,12 +81,12 @@ const Messenger = ({
     </div>
   );
 };
-
 const mapStateToProps = (state) => {
   return {
     userId: state.auth.user,
     isAuthenticated: state.auth.isAuthenticated,
     isLoading: state.auth.loading,
+    conversations: state.conversations.conversations,
   };
 };
 
