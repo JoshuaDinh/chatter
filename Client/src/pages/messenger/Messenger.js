@@ -17,9 +17,12 @@ const Messenger = ({
   isAuthenticated,
   isLoading,
 }) => {
-  if (isAuthenticated && isLoading === false) {
-    fetchConversations(userId?._id);
-  }
+  // Fecth conversations by userId after authenticated & finished loading
+  useEffect(() => {
+    if (isAuthenticated && isLoading === false) {
+      fetchConversations();
+    }
+  }, [isAuthenticated]);
   return (
     <div className="messenger">
       <div className="chat-menu">

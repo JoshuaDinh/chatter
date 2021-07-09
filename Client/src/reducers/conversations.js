@@ -4,11 +4,11 @@ const initialState = {
   conversations: [],
 };
 
-const conversations = (state, action) => {
+const conversations = (state = initialState, action) => {
   const { payload, type } = action;
   switch (type) {
     case FETCH_CONVERSATIONS:
-      return { ...state, payload };
+      return { ...state, conversations: payload };
     default:
       return state;
   }
