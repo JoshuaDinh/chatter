@@ -68,7 +68,7 @@ const Messenger = ({
           {chatId ? (
             <div className="chat-box-top">
               {messages.map((msg) => {
-                return <Message />;
+                return <Message message={msg} />;
               })}
             </div>
           ) : (

@@ -2,7 +2,7 @@ import React from "react";
 import "./message.css";
 // import SearchIcon from "@material-ui/icons/Search";
 
-const Message = ({ own }) => {
+const Message = ({ own, message }) => {
   return (
     <div className={`message ${own && "own"} `}>
       <div className="message-container ">
@@ -12,7 +12,7 @@ const Message = ({ own }) => {
           className="message-avatar"
         /> */}
         <p className="message-text">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores,
+          {message?.text || message?.message}
           <span className="message-timestamp own">
             {new Date().toUTCString()}
           </span>
