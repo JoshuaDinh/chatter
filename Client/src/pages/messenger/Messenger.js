@@ -23,6 +23,10 @@ const Messenger = ({ conversations, fetchConversations, userId }) => {
     <div className="messenger">
       <div className="chat-menu">
         <div className="chat-menu-wrapper">
+          <div className="chat-menu-header">
+            <h2>Chat's</h2>
+            <div className="chat-menu-add-conversation">+</div>
+          </div>
           <form className="chat-menu-form">
             <SearchIcon className="icon" />
             <input

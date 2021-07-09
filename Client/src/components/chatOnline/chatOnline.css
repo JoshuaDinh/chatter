@@ -1,14 +1,15 @@
 .chat-online {
   display: flex;
-  padding: 10px;
+  margin: 0 auto;
   width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 .chat-online-friend {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-  margin: 15px 0;
+  padding: 15px;
   cursor: pointer;
 }
 
@@ -34,8 +35,8 @@
 
 .chat-online-badge {
   position: absolute;
-  top: 0;
-  left: 45px;
+  top: 8px;
+  left: 50px;
   height: 10px;
   width: 10px;
   background: limegreen;
