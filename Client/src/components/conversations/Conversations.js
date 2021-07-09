@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./conversations.css";
 
-const conversations = () => {
+const Conversations = ({ conversation }) => {
   return (
     <div className="conversations">
       <img
@@ -20,4 +20,4 @@ const conversations = () => {
   );
 };
 
-export default conversations;
+export default Conversations;

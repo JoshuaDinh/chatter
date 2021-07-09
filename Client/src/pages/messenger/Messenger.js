@@ -11,21 +11,15 @@ import MicIcon from "@material-ui/icons/Mic";
 import { connect } from "react-redux";
 import { fetchConversations } from "../../actions/conversations";
 import conversations from "../../reducers/conversations";
+import auth from "../../reducers/auth";
 
-const Messenger = ({
-  conversations,
-  fetchConversations,
-  isAuthenticated,
-  isLoading,
-}) => {
-  console.log(conversations);
-
-  // Fecth conversations by userId after authenticated & finished loading
+const Messenger = ({ conversations, fetchConversations, userId }) => {
+  // Fecth conversations by userId after store is loaded userid !=null
   useEffect(() => {
-    if (isAuthenticated && isLoading === false) {
-      fetchConversations();
+    if (userId !== null) {
+      fetchConversations(userId._id);
     }
-  }, []);
+  }, [userId]);
   return (
     <div className="messenger">
       <div className="chat-menu">
@@ -38,8 +32,8 @@ const Messenger = ({
               className="chat-menu-input"
             />
           </form>
-          {conversations.map((conversation) => {
-            return <Conversations />;
+          {conversations.map((c) => {
+            return <Conversations conversation={c} />;
           })}
         </div>
       </div>
@@ -84,8 +78,6 @@ const Messenger = ({
 const mapStateToProps = (state) => {
   return {
     userId: state.auth.user,
-    isAuthenticated: state.auth.isAuthenticated,
-    isLoading: state.auth.loading,
     conversations: state.conversations.conversations,
   };
 };

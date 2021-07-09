@@ -6,6 +6,7 @@ import {
   LOGIN_FAIL,
   LOGIN_SUCCESS,
   LOGOUT,
+  FETCH_CONVERSATIONS,
 } from "./Types";
 import { setAlert } from "./alert";
 import axios from "axios";
