@@ -11,18 +11,38 @@ import MicIcon from "@material-ui/icons/Mic";
 import { connect } from "react-redux";
 import { fetchConversations } from "../../actions/conversations";
 import { fetchMessages } from "../../actions/messages";
+import { addMessage } from "../../actions/messages";
 import { setCurrentChat } from "../../actions/currentChat";
 import conversations from "../../reducers/conversations";
 import AddIcon from "@material-ui/icons/Add";
-
+import { io } from "socket.io-client";
 const Messenger = ({
   conversations,
   fetchConversations,
   fetchMessages,
   userId,
   messages,
+  addMessage,
 }) => {
   const [chatId, setChatId] = useState(null);
+  const [socekt, setSocket] = useState(null);
+  const [newMessage, setNewMessage] = useState("");
+
+  useEffect(() => {
+    setSocket(io("ws://localhost:8900"));
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const message = {
+      sender: userId._id,
+      message: newMessage,
+      conversationId: chatId,
+    };
+    addMessage(message);
+    console.log(chatId);
+  };
+
   // Fecth conversations by userId after store is loaded userid !=null
   useEffect(() => {
     if (userId !== null) {
@@ -67,8 +87,10 @@ const Messenger = ({
         <div className="chat-box-wrapper">
           {chatId ? (
             <div className="chat-box-top">
-              {messages.map((msg) => {
-                return <Message message={msg} />;
+              {messages?.map((msg) => {
+                return (
+                  <Message message={msg} own={msg.sender === userId._id} />
+                );
               })}
             </div>
           ) : (
@@ -81,6 +103,7 @@ const Messenger = ({
           <form className="chat-box-bottom">
             <AttachFileIcon className="icon" />
             <input
+              onChange={(e) => setNewMessage(e.target.value)}
               placeholder="Say something.."
               className="chat-box-input"
               type="text"
@@ -88,7 +111,10 @@ const Messenger = ({
             <InsertEmoticonIcon className="icon" />
             <MicIcon className="icon" />
             <div className="chat-box-submit-wrapper">
-              <SendIcon className="chat-box-submit-button" />
+              <SendIcon
+                className="chat-box-submit-button"
+                onClick={handleSubmit}
+              />
             </div>
           </form>
         </div>
@@ -114,4 +140,5 @@ export default connect(mapStateToProps, {
   fetchConversations,
   setCurrentChat,
   fetchMessages,
+  addMessage,
 })(Messenger);

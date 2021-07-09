@@ -12,4 +12,5 @@ export const LOGOUT = "LOGOUT";
 export const FETCH_CONVERSATIONS = "FETCH_CONVERSATIONS";
 export const CURRENT_CHAT = "CURRENT_CHAT";
 export const MESSAGES = "MESSAGES";
+export const ADD_MESSAGE = "ADD_MESSAGE";
 export const FETCH_USER = "FETCH_USER";
