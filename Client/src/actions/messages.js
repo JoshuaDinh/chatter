@@ -1,11 +1,9 @@
 import axios from "axios";
 import { MESSAGES } from "./Types";
-import axios from "axios";
 
-export const fetchMessages = () => async (dispatch) => {
+export const fetchMessages = (chatId) => async (dispatch) => {
   try {
-    const response = await axios.get(`api/messages/${convoId}`);
-    console.log(response.data);
+    const response = await axios.get(`api/messages/${chatId}`);
     dispatch({ type: MESSAGES, payload: response.data });
   } catch (err) {
     console.log(err);

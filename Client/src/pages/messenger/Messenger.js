@@ -10,6 +10,7 @@ import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
 import { connect } from "react-redux";
 import { fetchConversations } from "../../actions/conversations";
+import { fetchMessages } from "../../actions/messages";
 import { setCurrentChat } from "../../actions/currentChat";
 import conversations from "../../reducers/conversations";
 import AddIcon from "@material-ui/icons/Add";
@@ -17,10 +18,11 @@ import AddIcon from "@material-ui/icons/Add";
 const Messenger = ({
   conversations,
   fetchConversations,
+  fetchMessages,
   userId,
-  currentChat,
-  setCurrentChat,
+  messages,
 }) => {
+  const [chatId, setChatId] = useState(null);
   // Fecth conversations by userId after store is loaded userid !=null
   useEffect(() => {
     if (userId !== null) {
@@ -29,7 +31,10 @@ const Messenger = ({
   }, [userId]);
 
   // Fetch Messages by onClick
-  useEffect(() => {}, []);
+  useEffect(() => {
+    fetchMessages(chatId);
+  }, [chatId]);
+  console.log(messages);
 
   return (
     <div className="messenger">
@@ -51,7 +56,7 @@ const Messenger = ({
           </form>
           {conversations.map((c) => {
             return (
-              <div onClick={() => setCurrentChat(c._id)}>
+              <div onClick={() => setChatId(c._id)}>
                 <Conversations conversation={c} currentUser={userId} />;
               </div>
             );
@@ -60,18 +65,11 @@ const Messenger = ({
       </div>
       <div className="chat-box">
         <div className="chat-box-wrapper">
-          {currentChat ? (
+          {chatId ? (
             <div className="chat-box-top">
-              <Message />
-              <Message />
-              <Message own />
-              <Message own />
-              <Message />
-              <Message />
-              <Message />
-              <Message own />
-              <Message own />
-              <Message />
+              {messages.map((msg) => {
+                return <Message />;
+              })}
             </div>
           ) : (
             <div className="currentChat-null-wrapper">
@@ -108,10 +106,12 @@ const mapStateToProps = (state) => {
   return {
     userId: state.auth.user,
     conversations: state.conversations.conversations,
-    currentChat: state.conversations.currentchat,
+    messages: state.messages.messages,
   };
 };
 
-export default connect(mapStateToProps, { fetchConversations, setCurrentChat })(
-  Messenger
-);
+export default connect(mapStateToProps, {
+  fetchConversations,
+  setCurrentChat,
+  fetchMessages,
+})(Messenger);
