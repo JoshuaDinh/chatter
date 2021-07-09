@@ -6,7 +6,6 @@ const initialState = {
 
 const currentChat = (state = initialState, action) => {
   const { type, payload } = action;
-
   switch (type) {
     case CURRENT_CHAT:
       return { ...state, chatId: payload };
