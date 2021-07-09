@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./conversations.css";
+import { connect } from "react-redux";
+import { fetchUser } from "../../actions/user";
 
-const Conversations = ({ conversation }) => {
+const Conversations = ({ conversation, currentUser, fetchUser }) => {
+  useEffect(() => {
+    const friendId = conversation.members.find((m) => m !== currentUser);
+    fetchUser(friendId);
+  }, []);
   return (
     <div className="conversations">
       <img
@@ -20,4 +26,4 @@ const Conversations = ({ conversation }) => {
   );
 };
 
-export default Conversations;
+export default connect(null, { fetchUser })(Conversations);

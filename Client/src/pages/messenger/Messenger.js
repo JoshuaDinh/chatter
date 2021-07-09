@@ -11,7 +11,6 @@ import MicIcon from "@material-ui/icons/Mic";
 import { connect } from "react-redux";
 import { fetchConversations } from "../../actions/conversations";
 import conversations from "../../reducers/conversations";
-import auth from "../../reducers/auth";
 
 const Messenger = ({ conversations, fetchConversations, userId }) => {
   // Fecth conversations by userId after store is loaded userid !=null
@@ -33,7 +32,7 @@ const Messenger = ({ conversations, fetchConversations, userId }) => {
             />
           </form>
           {conversations.map((c) => {
-            return <Conversations conversation={c} />;
+            return <Conversations conversation={c} currentUser={userId} />;
           })}
         </div>
       </div>

@@ -8,7 +8,7 @@ const user = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case FETCH_USER:
-      return { ...state, payload };
+      return { ...state, user: payload };
     default:
       return state;
   }

@@ -4,6 +4,7 @@ import registerForm from "./registerForm";
 import termsOfService from "./termsOfService";
 import auth from "./auth";
 import conversations from "./conversations";
+import user from "./user";
 
 export default combineReducers({
   alert,
@@ -11,4 +12,5 @@ export default combineReducers({
   termsOfService,
   auth,
   conversations,
+  user,
 });
