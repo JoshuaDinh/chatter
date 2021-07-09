@@ -1,25 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./conversations.css";
 import { connect } from "react-redux";
-import { fetchUser } from "../../actions/user";
-import user from "../../reducers/user";
+// import { fetchUser } from "../../actions/user";
+import axios from "axios";
 
-const Conversations = ({ conversation, currentUser, fetchUser, user }) => {
+const Conversations = ({ conversation, currentUser }) => {
+  const [user, setUser] = useState(null);
+
+  // Get user based on mapped userid from Messages Page
   useEffect(() => {
     const friendId = conversation.members.find((m) => m !== currentUser);
-    if (user !== null) {
-      fetchUser(friendId);
-    }
+    const getUser = async () => {
+      try {
+        const response = await axios.get(`/api/user/${friendId}`);
+        setUser(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getUser();
   }, [currentUser, conversation]);
+
   return (
     <div className="conversations">
       <img
-        src="https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc5NjIyODM0ODM2ODc0Mzc3/dwayne-the-rock-johnson-gettyimages-1061959920.jpg"
+        src="https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png"
         alt=""
         className="conversations-avatar"
       />
       <div className="conversations-info">
-        <span>{user?.username}</span>
+        <span>{user.username}</span>
         <p>Lorem ipsum dolor sit amet.</p>
       </div>
       <div className="conversations-new-message">
@@ -31,7 +41,7 @@ const Conversations = ({ conversation, currentUser, fetchUser, user }) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user.user,
+    user: state.user,
   };
 };
 

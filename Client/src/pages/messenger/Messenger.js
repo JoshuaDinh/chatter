@@ -10,6 +10,7 @@ import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
 import { connect } from "react-redux";
 import { fetchConversations } from "../../actions/conversations";
+import { fetchUser } from "../../actions/user";
 import conversations from "../../reducers/conversations";
 import AddIcon from "@material-ui/icons/Add";
 
@@ -20,6 +21,18 @@ const Messenger = ({ conversations, fetchConversations, userId }) => {
       fetchConversations(userId._id);
     }
   }, [userId]);
+
+  // if (conversations) {
+  //   const friendId = conversations.map((conversation) => {
+  //     conversation.members.find((m) => m !== userId._id);
+  //   });
+  //   console.log(friendId);
+  // }
+
+  // useEffect(() => {
+
+  // }, []);
+
   return (
     <div className="messenger">
       <div className="chat-menu">
@@ -88,4 +101,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchConversations })(Messenger);
+export default connect(mapStateToProps, { fetchConversations, fetchUser })(
+  Messenger
+);
