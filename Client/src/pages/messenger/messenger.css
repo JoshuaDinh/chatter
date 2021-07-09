@@ -170,3 +170,16 @@
   text-align: center;
   margin: 12px 0;
 }
+
+.currentChat-null-wrapper {
+  position: relative;
+  height: 100%;
+  font-size: 1.6rem;
+}
+
+.currentChat-null {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

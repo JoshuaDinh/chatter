@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 
 const Conversations = ({ conversation, currentUser }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("");
 
   // Get user based on mapped userid from Messages Page
   useEffect(() => {
@@ -29,7 +29,7 @@ const Conversations = ({ conversation, currentUser }) => {
         className="conversations-avatar"
       />
       <div className="conversations-info">
-        <span>{user.username}</span>
+        <span>{user?.username}</span>
         <p>Lorem ipsum dolor sit amet.</p>
       </div>
       <div className="conversations-new-message">
@@ -45,4 +45,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchUser })(Conversations);
+export default connect(mapStateToProps)(Conversations);

@@ -14,24 +14,18 @@ import { fetchUser } from "../../actions/user";
 import conversations from "../../reducers/conversations";
 import AddIcon from "@material-ui/icons/Add";
 
-const Messenger = ({ conversations, fetchConversations, userId }) => {
+const Messenger = ({
+  conversations,
+  fetchConversations,
+  userId,
+  currentChat,
+}) => {
   // Fecth conversations by userId after store is loaded userid !=null
   useEffect(() => {
     if (userId !== null) {
       fetchConversations(userId._id);
     }
   }, [userId]);
-
-  // if (conversations) {
-  //   const friendId = conversations.map((conversation) => {
-  //     conversation.members.find((m) => m !== userId._id);
-  //   });
-  //   console.log(friendId);
-  // }
-
-  // useEffect(() => {
-
-  // }, []);
 
   return (
     <div className="messenger">
@@ -58,18 +52,26 @@ const Messenger = ({ conversations, fetchConversations, userId }) => {
       </div>
       <div className="chat-box">
         <div className="chat-box-wrapper">
-          <div className="chat-box-top">
-            <Message />
-            <Message />
-            <Message own />
-            <Message own />
-            <Message />
-            <Message />
-            <Message />
-            <Message own />
-            <Message own />
-            <Message />
-          </div>
+          {currentChat ? (
+            <div className="chat-box-top">
+              <Message />
+              <Message />
+              <Message own />
+              <Message own />
+              <Message />
+              <Message />
+              <Message />
+              <Message own />
+              <Message own />
+              <Message />
+            </div>
+          ) : (
+            <div className="currentChat-null-wrapper">
+              <span className="currentChat-null">
+                Open a chat to start a conversation
+              </span>
+            </div>
+          )}
           <form className="chat-box-bottom">
             <AttachFileIcon className="icon" />
             <input
@@ -98,6 +100,7 @@ const mapStateToProps = (state) => {
   return {
     userId: state.auth.user,
     conversations: state.conversations.conversations,
+    currentChat: state.conversations.currentchat,
   };
 };
 

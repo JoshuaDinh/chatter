@@ -1,11 +1,8 @@
-import {
-  FETCH_CONVERSATIONS,
-  FETCH_SINGLE_CONVERSATION,
-} from "../actions/Types";
+import { CURRENT_CONVERSATION, FETCH_CONVERSATIONS } from "../actions/Types";
 
 const initialState = {
   conversations: [],
-  singleConversation: [],
+  currentConversation: null,
   isLoading: true,
 };
 
@@ -14,7 +11,7 @@ const conversations = (state = initialState, action) => {
   switch (type) {
     case FETCH_CONVERSATIONS:
       return { ...state, conversations: payload, isLoading: false };
-    case FETCH_SINGLE_CONVERSATION:
+    case CURRENT_CONVERSATION:
       return { ...state, conversations: payload, isLoading: false };
     default:
       return state;
