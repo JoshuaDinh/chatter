@@ -10,6 +10,6 @@ export const LOGIN_SUCCESS = " LOGIN_SUCCESS";
 export const LOGIN_FAIL = " LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
 export const FETCH_CONVERSATIONS = "FETCH_CONVERSATIONS";
-export const CURRENT_CONVERSATION = "CURRENT_CONVERSATION";
+export const CURRENT_CHAT = "CURRENT_CHAT";
 export const MESSAGES = "MESSAGES";
 export const FETCH_USER = "FETCH_USER";
