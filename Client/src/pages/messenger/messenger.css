@@ -23,6 +23,12 @@
   height: 100%;
 }
 
+.chat-menu-wrapper {
+  /* margin-bottom: 10px !important; */
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
 .chat-menu-header {
   display: flex;
   align-items: center;
@@ -32,6 +38,7 @@
 }
 
 .chat-menu-add-conversation {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,15 +56,20 @@
     #36d1dc
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   border: 1px solid white;
-  border-radius: 50%;
-  font-size: 1.8rem;
-  font-weight: 500;
+  border-radius: 999px;
   color: white;
   cursor: pointer;
 }
 .chat-menu-add-conversation:hover {
   transform: scale(1.25);
   transition: 0.25s ease-in;
+}
+
+.chat-menu-add-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .chat-menu-form {

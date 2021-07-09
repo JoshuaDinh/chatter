@@ -11,6 +11,7 @@ import MicIcon from "@material-ui/icons/Mic";
 import { connect } from "react-redux";
 import { fetchConversations } from "../../actions/conversations";
 import conversations from "../../reducers/conversations";
+import AddIcon from "@material-ui/icons/Add";
 
 const Messenger = ({ conversations, fetchConversations, userId }) => {
   // Fecth conversations by userId after store is loaded userid !=null
@@ -25,7 +26,9 @@ const Messenger = ({ conversations, fetchConversations, userId }) => {
         <div className="chat-menu-wrapper">
           <div className="chat-menu-header">
             <h2>Chat's</h2>
-            <div className="chat-menu-add-conversation">+</div>
+            <div className="chat-menu-add-conversation">
+              <AddIcon className="chat-menu-add-icon " />
+            </div>
           </div>
           <form className="chat-menu-form">
             <SearchIcon className="icon" />
