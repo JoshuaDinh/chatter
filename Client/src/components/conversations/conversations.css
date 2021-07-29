@@ -22,6 +22,7 @@
     #5b86e5,
     #36d1dc
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   transform: scale(1.083);
 }
 
@@ -63,6 +64,7 @@
     #5b86e5,
     #36d1dc
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   border: 1px solid white;
   border-radius: 50%;
   font-size: 1.2rem;

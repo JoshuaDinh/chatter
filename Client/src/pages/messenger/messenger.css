@@ -11,14 +11,8 @@
   flex: 9.5;
 }
 
-.chat-online {
-  flex: 3;
-  flex-direction: column;
-}
-
 .chat-menu-wrapper,
-.chat-box-wrapper,
-.chat-online-wrapper {
+.chat-box-wrapper {
   padding: 10px;
   height: 100%;
 }
@@ -55,6 +49,7 @@
     #5b86e5,
     #36d1dc
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   border: 1px solid white;
   border-radius: 999px;
   color: white;
@@ -104,71 +99,6 @@
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   overflow-y: scroll;
-}
-
-.chat-box-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  margin-top: 5px;
-  /* border: 1px solid grey; */
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  background: #fff;
-}
-
-.chat-box-bottom .icon:first-child {
-  margin-left: 15px;
-}
-
-.chat-box-bottom .icon {
-  cursor: pointer;
-}
-
-.chat-box-input {
-  width: 72%;
-  padding: 5px;
-  border: none;
-  outline: none;
-}
-
-.chat-box-submit-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 2rem;
-  width: 2rem;
-  background: #36d1dc; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #5b86e5,
-    #36d1dc
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #5b86e5,
-    #36d1dc
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-  border-radius: 50%;
-  margin-right: 15px;
-  cursor: pointer;
-}
-
-.chat-box-submit-wrapper:hover {
-  transform: scale(1.25);
-  transition: 0.25s ease-in;
-}
-
-.chat-box-submit-button {
-  font-size: 1rem !important;
-  color: white;
-}
-
-.chat-online > h2 {
-  text-align: center;
-  margin: 12px 0;
 }
 
 .currentChat-null-wrapper {

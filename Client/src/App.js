@@ -20,13 +20,15 @@ const App = () => {
 
   return (
     <Router>
+      <Navigation />
       <Switch>
         <Route path="/messenger">
           <Navigation />
           <Messenger />
         </Route>
         <Route exact path="/">
-          <Home />
+          {/* <Home /> */}
+          <Messenger />
         </Route>
       </Switch>
     </Router>
