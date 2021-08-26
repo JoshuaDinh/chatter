@@ -1,28 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./conversations.css";
 import { connect } from "react-redux";
-// import { fetchUser } from "../../actions/user";
-import axios from "axios";
+import { setCurrentChat } from "../../actions/currentChat";
+import { fetchUser } from "../../actions/user";
+import { fetchMessages } from "../../actions/messages";
 
-const Conversations = ({ conversation, currentUser }) => {
-  const [user, setUser] = useState("");
-
-  // Get user based on mapped userid from Messages Page
+const Conversations = ({
+  chatId,
+  setCurrentChat,
+  friend,
+  user,
+  fetchUser,
+  messages,
+  fetchMessages,
+}) => {
   useEffect(() => {
-    const friendId = conversation.members.find((m) => m !== currentUser);
-    const getUser = async () => {
-      try {
-        const response = await axios.get(`/api/user/${friendId}`);
-        setUser(response.data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    getUser();
-  }, [currentUser, conversation]);
+    fetchUser(friend);
+    // Get Message for each chatId - used to display last message on coversation component
+    fetchMessages(chatId);
+  }, []);
 
   return (
-    <div className="conversations">
+    <div onClick={() => setCurrentChat(chatId)} className="conversations">
       <img
         src="https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png"
         alt=""
@@ -30,10 +29,11 @@ const Conversations = ({ conversation, currentUser }) => {
       />
       <div className="conversations-info">
         <span>{user?.username}</span>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <p>{messages[messages.length - 1]?.message}</p>
       </div>
       <div className="conversations-new-message">
-        <span>+</span>4
+        <span>+</span>
+        {messages.length}
       </div>
     </div>
   );
@@ -41,8 +41,13 @@ const Conversations = ({ conversation, currentUser }) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: state.user.users,
+    messages: state.messages.messages,
   };
 };
 
-export default connect(mapStateToProps)(Conversations);
+export default connect(mapStateToProps, {
+  setCurrentChat,
+  fetchUser,
+  fetchMessages,
+})(Conversations);
