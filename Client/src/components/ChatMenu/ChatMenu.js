@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
 import "./chatMenu.css";
-import Conversations from "../ChatMenu/ChatMenu";
 import SearchIcon from "@material-ui/icons/Search";
 import AddIcon from "@material-ui/icons/Add";
+import Conversations from "../conversations/Conversations";
 import { connect } from "react-redux";
-import { setCurrentChat } from "../../actions/currentChat";
+import { fetchConversations } from "../../actions/conversations";
 
-const ChatMenu = ({ user, fetchConversations }) => {
+const ChatMenu = ({ authUser, fetchConversations, conversations }) => {
   // Fecth conversations by userId after store is loaded userid !=null
   useEffect(() => {
-    if (user !== null) {
-      fetchConversations(user._id);
+    if (authUser !== null) {
+      fetchConversations(authUser._id);
     }
-  }, [user]);
+  }, [authUser]);
+
   return (
     <div className="chat-menu">
       <div className="chat-menu-wrapper">
@@ -30,13 +31,9 @@ const ChatMenu = ({ user, fetchConversations }) => {
             className="chat-menu-input"
           />
         </form>
-        {/* {conversations.map((c) => {
-          return (
-            <div onClick={() => setChatId(c._id)}>
-              <Conversations conversation={c} currentUser={user} />;
-            </div>
-          );
-        })} */}
+        {conversations.map((c) => {
+          return <Conversations chatId={c._id} friend={c.members[1]} />;
+        })}
       </div>
     </div>
   );
@@ -44,12 +41,12 @@ const ChatMenu = ({ user, fetchConversations }) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.auth.user,
+    authUser: state.auth.user,
     conversations: state.conversations.conversations,
-    messages: state.messages.messages,
+    // messages: state.messages.messages,
   };
 };
 
 export default connect(mapStateToProps, {
-  setCurrentChat,
+  fetchConversations,
 })(ChatMenu);
