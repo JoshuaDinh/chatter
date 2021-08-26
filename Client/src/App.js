@@ -7,7 +7,6 @@ import Navigation from "./components/navigation/Navigation";
 import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
 import Store from "./store";
-import { fetchConversations } from "./actions/conversations";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -23,12 +22,10 @@ const App = () => {
       <Navigation />
       <Switch>
         <Route path="/messenger">
-          <Navigation />
           <Messenger />
         </Route>
         <Route exact path="/">
-          {/* <Home /> */}
-          <Messenger />
+          <Home />
         </Route>
       </Switch>
     </Router>
