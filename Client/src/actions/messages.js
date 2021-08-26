@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MESSAGES, ADD_MESSAGE } from "./Types";
+import { MESSAGES, POST_MESSAGE, MESSAGE } from "./Types";
 
 export const fetchMessages = (chatId) => async (dispatch) => {
   try {
@@ -10,10 +10,13 @@ export const fetchMessages = (chatId) => async (dispatch) => {
   }
 };
 
-export const addMessage = (message) => async (dispatch) => {
+export const setMessage = (message) => (dispatch) =>
+  dispatch({ type: MESSAGE, payload: message });
+
+export const postMessage = (messageBody) => async (dispatch) => {
   try {
-    const response = await axios.post("api/messages", message);
-    dispatch({ type: ADD_MESSAGE, payload: response.data });
+    const response = await axios.post("api/messages", messageBody);
+    dispatch({ type: POST_MESSAGE, payload: response.data });
   } catch (err) {
     console.log(err);
   }
