@@ -4,33 +4,47 @@ import AttachFileIcon from "@material-ui/icons/AttachFile";
 import SendIcon from "@material-ui/icons/Send";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
-
+import { postMessage, setMessage } from "../../actions/messages";
 import { connect } from "react-redux";
 
-const ChatInput = ({ user, conversation, messages }) => {
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     const message = {
-  //       sender: user._id,
-  //       message: newMessage,
-  //       conversationId: chatId,
-  //     };
-  //   };
+const ChatInput = ({
+  setMessage,
+  postMessage,
+  message,
+  selectedChatId,
+  user,
+}) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const messageBody = {
+      conversationId: selectedChatId,
+      sender: user._id,
+      message: message,
+    };
+    postMessage(messageBody);
+  };
 
   return (
-    <form className="chat-input-form">
+    <form
+      className="chat-input-form"
+      onSubmit={(e) => handleSubmit(e, message)}
+    >
       <AttachFileIcon className="icon" />
       <input
-        // onChange={(e) => setNewMessage(e.target.value)}
         placeholder="Say something.."
         className="chat-input"
         type="text"
+        onChange={(e) => setMessage(e.target.value)}
       ></input>
       <InsertEmoticonIcon className="icon" />
       <MicIcon className="icon" />
-      <div className="chat-input-submit-wrapper">
+      <button
+        type="submit"
+        onclassName="chat-input-submit-wrapper"
+        onSubmit={() => handleSubmit}
+      >
         <SendIcon className="chat-input-submit-button" />
-      </div>
+      </button>
     </form>
   );
 };
@@ -38,9 +52,9 @@ const ChatInput = ({ user, conversation, messages }) => {
 const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
-    conversations: state.conversations.conversations,
-    messages: state.messages.messages,
+    selectedChatId: state.currentChat.chatId,
+    message: state.messages.message,
   };
 };
 
-export default connect(mapStateToProps)(ChatInput);
+export default connect(mapStateToProps, { postMessage, setMessage })(ChatInput);
