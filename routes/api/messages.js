@@ -7,7 +7,11 @@ const Message = require("../../models/Message");
 // @access Private
 
 router.post("/", async (req, res) => {
-  const newMessage = new Message(req.body);
+  const newMessage = new Message({
+    conversationId: req.body.conversationId,
+    sender: req.body.sender,
+    message: req.body.message,
+  });
   try {
     const savedMessage = await newMessage.save();
     res.status(200).json(savedMessage);

@@ -127,7 +127,7 @@ router.delete("/:id", auth, async (req, res) => {
   }
 });
 
-// @route Get /api/user/id
+// @route Get /api/user/:id
 // @desc Get User account
 // @access Private
 
@@ -138,11 +138,11 @@ router.get("/:id", async (req, res) => {
     const { password, id, ...other } = user._doc;
     res.status(200).json(other);
   } catch (err) {
-    return res.status(500).json({ err });
+    return res.status(500).json(err);
   }
 });
 
-// @route Add Friend /api/user/id
+// @route Add Friend /api/user/:id
 // @desc Add User as friend
 // @access Private
 
