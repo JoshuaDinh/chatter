@@ -1,8 +1,9 @@
-import { MESSAGES, ADD_MESSAGE } from "../actions/Types";
+import { MESSAGES, POST_MESSAGE, MESSAGE } from "../actions/Types";
 
 const initialState = {
   messages: [],
-  addMessage: "",
+  message: "",
+  addMessage: {},
 };
 
 const messages = (state = initialState, action) => {
@@ -10,8 +11,10 @@ const messages = (state = initialState, action) => {
   switch (type) {
     case MESSAGES:
       return { ...state, messages: payload };
-    case ADD_MESSAGE:
-      return { ...state, messages: payload };
+    case MESSAGE:
+      return { ...state, message: payload };
+    case POST_MESSAGE:
+      return { ...state, postMessage: payload };
     default:
       return state;
   }
