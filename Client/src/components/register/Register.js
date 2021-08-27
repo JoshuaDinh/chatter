@@ -82,7 +82,7 @@ const Register = ({
           className="register-input"
           type="confirm-password"
           placeholder="Confirm Password"
-          name="Confirm-Password"
+          name="password2"
           onChange={(e) => updateFormData(e)}
           value={password2}
           minLength="6"

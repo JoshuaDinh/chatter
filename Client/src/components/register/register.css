@@ -25,10 +25,8 @@
 .register-input-wrapper {
   display: grid;
   grid-gap: 50px;
+  width: 95%;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  width: 90%;
-  margin-bottom: 10px;
 }
 
 .register-input {
@@ -38,7 +36,6 @@
   outline: none;
   border: none;
   background: whitesmoke;
-
   border-bottom: 1px solid grey;
 }
 

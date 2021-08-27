@@ -3,7 +3,10 @@ import "./personal.css";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import SettingsIcon from "@material-ui/icons/Settings";
 import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
-const Personal = () => {
+import { connect } from "react-redux";
+
+const Personal = ({ authUser }) => {
+  console.log(authUser);
   return (
     <div className="personal">
       <div className="personal-info">
@@ -12,7 +15,7 @@ const Personal = () => {
           className="personal-avatar"
           alt=""
         />
-        <h1>Joshua D.</h1>
+        <h1>{authUser.username}</h1>
         <p>
           status: <span>Online</span>
         </p>
@@ -26,15 +29,25 @@ const Personal = () => {
       <div className="personal-contact">
         <div className="personal-contact-item">
           <span>Phone:</span>
-          <span>619-977-3574</span>
+          {authUser.phone ? (
+            <span>{authUser.phone}</span>
+          ) : (
+            <span>N/A</span>
+          )}{" "}
         </div>
         <div className="personal-contact-item">
           <span>Email:</span>
-          <span>josh@joshuadinh.tech </span>
+          <span>{authUser.email}</span>
         </div>
       </div>
     </div>
   );
 };
 
-export default Personal;
+const mapStateToProps = (state) => {
+  return {
+    authUser: state.auth.user,
+  };
+};
+
+export default connect(mapStateToProps)(Personal);
