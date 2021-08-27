@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Messenger from "./pages/messenger/Messenger";
-import Home from "./pages/home/Home";
-import Navigation from "./components/navigation/Navigation";
+import Messenger from "./pages/Messenger/Messenger";
+import Home from "./pages/Home/Home";
+import Navigation from "./Components/Navigation/Navigation";
 import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
 import Store from "./store";

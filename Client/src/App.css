@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background: whitesmoke;
+}
+
 input {
   outline: none;
   border: none;

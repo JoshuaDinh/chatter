@@ -1,30 +1,31 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import "./messenger.css";
-import ChatOnline from "../../components/chatOnline/ChatOnline";
-import Message from "../../components/message/Message";
-
+import Message from "../../Components/Message/Message";
 import { connect } from "react-redux";
 import { fetchConversations } from "../../actions/conversations";
 import { fetchMessages } from "../../actions/messages";
-import { addMessage } from "../../actions/messages";
-import { io } from "socket.io-client";
-import OnlineFriends from "../../components/OnlineFriends/OnlineFriends";
-import ChatInput from "../../components/ChatInput/ChatInput";
-import ChatMenu from "../../components/ChatMenu/ChatMenu";
+import Sidebar from "../../Components/Sidebar/Sidebar";
+import ChatInput from "../../Components/ChatInput/ChatInput";
+import ChatMenu from "../../Components/ChatMenu/ChatMenu";
+import Personal from "../../Components/Personal/Personal";
+import Search from "../../Components/Search/Search";
 
-const Messenger = ({ fetchMessages, user, messages, selectedChatId }) => {
-  // const [chatId, setChatId] = useState(null);
-  const [newMessage, setNewMessage] = useState("");
-  const [arrivalMessage, setArrivalMessage] = useState(null);
-
-  // Fetch Messages by onClick
+const Messenger = ({
+  fetchMessages,
+  user,
+  messages,
+  selectedChatId,
+  toggleSearch,
+}) => {
   useEffect(() => {
     fetchMessages(selectedChatId);
-  }, [selectedChatId, newMessage]);
+  }, [selectedChatId]);
 
   return (
     <div className="messenger">
+      <Sidebar />
       <ChatMenu />
+      {toggleSearch && <Search />}
       <div className="chat-box">
         <div className="chat-box-wrapper">
           {selectedChatId ? (
@@ -43,7 +44,7 @@ const Messenger = ({ fetchMessages, user, messages, selectedChatId }) => {
           <ChatInput />
         </div>
       </div>
-      {/* <OnlineFriends /> */}
+      <Personal />
     </div>
   );
 };
@@ -53,6 +54,7 @@ const mapStateToProps = (state) => {
     conversations: state.conversations.conversations,
     messages: state.messages.messages,
     selectedChatId: state.currentChat.chatId,
+    toggleSearch: state.toggleSearch.toggle,
   };
 };
 

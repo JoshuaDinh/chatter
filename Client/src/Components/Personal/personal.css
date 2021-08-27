@@ -1,0 +1,81 @@
+.personal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 0.25;
+  width: 100%;
+  border: 1px solid lightgrey;
+}
+
+.personal-avatar {
+  height: 10rem;
+  width: 10rem;
+  background: #73c8a9; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #373b44,
+    #73c8a9
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #373b44,
+    #73c8a9
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  padding: 2px;
+  margin-top: 30%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.personal-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.personal-info-icons {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  width: 100%;
+  cursor: pointer;
+  color: grey;
+}
+.personal-info-icon {
+  font-size: 2rem !important;
+}
+
+.personal-info > p {
+  margin-top: 10px;
+  color: grey;
+  font-size: 1.2rem;
+}
+.personal-info > p > span {
+  background: -webkit-linear-gradient(#373b44, #73c8a9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.personal-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  flex: 1;
+  width: 100%;
+  background: rgb(231, 231, 231, 0.5);
+}
+
+.personal-contact-item {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.personal-contact-item > span:last-child {
+  flex: 0.7;
+}
+.personal-contact-item > span:first-child {
+  flex: 0.3;
+}

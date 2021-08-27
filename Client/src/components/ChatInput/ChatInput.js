@@ -40,7 +40,7 @@ const ChatInput = ({
       <MicIcon className="icon" />
       <button
         type="submit"
-        onclassName="chat-input-submit-wrapper"
+        className="chat-input-submit-wrapper"
         onSubmit={() => handleSubmit}
       >
         <SendIcon className="chat-input-submit-button" />

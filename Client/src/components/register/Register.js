@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import "./register.css";
-import Alert from "../../components/alert/Alert";
+import Alert from "../Alert/Alert";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { register } from "../../actions/auth";
 import { setAlert } from "../../actions/alert";
 import { setRegisterForm } from "../../actions/registerForm";
-import { setTermsOfService } from "../../actions/termsOfService";
+import { setToggleTermsOfService } from "../../actions/toggleTermsOfService";
 
 const Register = ({
   setRegisterForm,
-  setTermsOfService,
+  setToggleTermsOfService,
   setAlert,
   register,
   isAuthenticated,
@@ -92,7 +92,7 @@ const Register = ({
         <input type="checkbox" />
         <p>
           I agreen to the
-          <span onClick={setTermsOfService}>
+          <span onClick={setToggleTermsOfService}>
             Terms of Service & Privacy Policy
           </span>
         </p>
@@ -105,12 +105,6 @@ const Register = ({
   );
 };
 
-Register.propTypes = {
-  setAlert: PropTypes.func.isRequired,
-  register: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
-};
-
 const mapStateToProps = (state) => {
   return {
     alert: state.alert,
@@ -121,6 +115,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   register,
   setAlert,
-  setTermsOfService,
+  setToggleTermsOfService,
   setRegisterForm,
 })(Register);

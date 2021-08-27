@@ -10,18 +10,17 @@
 
 .termsOfService-wrapper {
   height: 61vh;
-  background: #36d1dc; /* fallback for old browsers */
+  background: #73c8a9; /* fallback for old browsers */
   background: -webkit-linear-gradient(
-    to right,
-    #5b86e5,
-    #36d1dc
+    to left,
+    #373b44,
+    #73c8a9
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
-    to right,
-    #5b86e5,
-    #36d1dc
+    to left,
+    #373b44,
+    #73c8a9
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
   padding: 5px;
 }
 
@@ -39,18 +38,17 @@
 .break {
   min-height: 7px;
   min-width: 50px;
-  background: #36d1dc; /* fallback for old browsers */
+  background: #73c8a9; /* fallback for old browsers */
   background: -webkit-linear-gradient(
-    to right,
-    #5b86e5,
-    #36d1dc
+    to left,
+    #373b44,
+    #73c8a9
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
-    to right,
-    #5b86e5,
-    #36d1dc
+    to left,
+    #373b44,
+    #73c8a9
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
   margin: 20px 0;
 }
 
@@ -62,5 +60,5 @@
 }
 
 .terms-icon:hover {
-  color: #36d1dc !important;
+  color: grey !important;
 }

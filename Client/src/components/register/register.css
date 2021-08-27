@@ -14,10 +14,11 @@
 }
 
 .register-form-header > span {
-  background: -webkit-linear-gradient(#5b86e5, #36d1dc);
+  background: -webkit-linear-gradient(#373b44, #73c8a9);
   font-size: 1.6rem;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
   color: #36d1dc;
 }
 
@@ -36,6 +37,8 @@
   width: 100%;
   outline: none;
   border: none;
+  background: whitesmoke;
+
   border-bottom: 1px solid grey;
 }
 
@@ -45,18 +48,17 @@
   padding: 10px;
   border-radius: 5px;
   flex: 1.7;
-  background: #36d1dc; /* fallback for old browsers */
+  background: #73c8a9; /* fallback for old browsers */
   background: -webkit-linear-gradient(
-    to right,
-    #5b86e5,
-    #36d1dc
+    to left,
+    #373b44,
+    #73c8a9
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
-    to right,
-    #5b86e5,
-    #36d1dc
+    to left,
+    #373b44,
+    #73c8a9
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   color: white;
   text-align: center;
@@ -75,16 +77,15 @@
   padding: 15px;
   border: none;
   outline: none;
-  background: white;
   text-align: center;
   font-size: 0.9rem;
   cursor: pointer;
 }
 .register-return-button:hover {
-  background: -webkit-linear-gradient(#5b86e5, #36d1dc);
+  background: -webkit-linear-gradient(#373b44, #73c8a9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: #36d1dc;
+  color: #73c8a9;
 }
 
 .register-policy {
@@ -99,13 +100,12 @@
 
 .register-policy > p > span {
   margin-left: 4px;
-  background: -webkit-linear-gradient(#5b86e5, #36d1dc);
+  background: -webkit-linear-gradient(#373b44, #73c8a9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: #36d1dc;
   cursor: pointer;
 }
 
 .register-policy > p > span:hover {
-  border-bottom: 1px solid #5b86e5;
+  border-bottom: 1px solid #73c8a9;
 }

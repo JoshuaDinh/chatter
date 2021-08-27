@@ -1,4 +1,4 @@
-.conversations {
+.conversation {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -10,69 +10,75 @@
   transition: 0.2s ease-in;
 }
 
-.conversations:hover {
-  background: #36d1dc; /* fallback for old browsers */
+.conversation:hover {
+  background: #73c8a9; /* fallback for old browsers */
   background: -webkit-linear-gradient(
-    to right,
-    #5b86e5,
-    #36d1dc
+    to left,
+    #373b44,
+    #73c8a9
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
-    to right,
-    #5b86e5,
-    #36d1dc
+    to left,
+    #373b44,
+    #73c8a9
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-  transform: scale(1.083);
 }
 
-.conversations-avatar {
+.conversation-avatar {
   height: 3em;
   width: 3em;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.conversations-info {
+.conversation-info {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   flex: 0.9;
 }
 
-.conversations-info > span {
+.conversation-info > span {
   font-weight: 600;
 }
 
-.conversations-info > p {
+.conversation-info > p {
   font-size: 0.8rem;
 }
 
-.conversations-new-message {
+.conversation-new-message {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 2rem;
   width: 2rem;
-  background: #36d1dc; /* fallback for old browsers */
+  background: #73c8a9; /* fallback for old browsers */
   background: -webkit-linear-gradient(
-    to right,
-    #5b86e5,
-    #36d1dc
+    to left,
+    #373b44,
+    #73c8a9
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
-    to right,
-    #5b86e5,
-    #36d1dc
+    to left,
+    #373b44,
+    #73c8a9
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
   border: 1px solid white;
   border-radius: 50%;
   font-size: 1.2rem;
   color: white;
 }
 
-.conversations-new-message > span {
+.conversation-new-message > span {
   font-size: 0.8rem;
   margin-right: 2px;
+}
+
+.conversation-delete-icon {
+  color: grey;
+  cursor: pointer;
+}
+.conversation-delete-icon:hover {
+  color: rgb(226, 19, 19);
+  transform: scale(1.25);
 }

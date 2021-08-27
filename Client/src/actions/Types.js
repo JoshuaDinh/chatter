@@ -1,7 +1,6 @@
 export const SET_ALERT = "SET_ALERT";
 export const REMOVE_ALERT = "REMOVE_ALERT";
 export const SET_REGISTER_FORM = "SET_REGISTER_FORM";
-export const SET_TERMS_OF_SERVICE = "SET_TERMS_OF_SERVICE";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const USER_LOADED = "USER_LOADED";
@@ -15,3 +14,5 @@ export const MESSAGES = "MESSAGES";
 export const MESSAGE = "MESSAGE";
 export const POST_MESSAGE = "POST_MESSAGE";
 export const FETCH_USER = "FETCH_USER";
+export const TOGGLE_SEARCH = "TOGGLE_SEARCH";
+export const TOGGLE_TERMS_OF_SERVICE = "TOGGLE_TERMS_OF_SERVICE";

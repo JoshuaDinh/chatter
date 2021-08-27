@@ -1,8 +1,8 @@
 import React from "react";
 import "./home.css";
-import Login from "../../components/login/Login";
-import Register from "../../components/register/Register";
-import TermsOfService from "../../components/TermsOfService/TermsOfService";
+import Login from "../../Components/Login/Login";
+import Register from "../../Components/Register/Register";
+import TermsOfService from "../../Components/TermsOfService/TermsOfService";
 import homeImage from "../../images/homeImage.svg";
 import { connect } from "react-redux";
 
@@ -33,7 +33,7 @@ const Home = ({ registerForm, termsOfService }) => {
 const mapStateToProps = (state) => {
   return {
     registerForm: state.registerForm.toggle,
-    termsOfService: state.termsOfService.toggle,
+    termsOfService: state.toggleTermsOfService,
   };
 };
 

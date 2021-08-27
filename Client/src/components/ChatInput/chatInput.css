@@ -4,9 +4,7 @@
   justify-content: space-between;
   padding: 20px;
   margin-top: 5px;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  background: #fff;
+  border-top: 1px solid lightgrey;
 }
 
 .chat-box-bottom .icon:first-child {
@@ -22,6 +20,7 @@
   padding: 5px;
   border: none;
   outline: none;
+  background: whitesmoke;
 }
 
 .chat-input-submit-wrapper {
@@ -30,16 +29,16 @@
   justify-content: center;
   height: 2rem;
   width: 2rem;
-  background: #36d1dc; /* fallback for old browsers */
+  background: #73c8a9; /* fallback for old browsers */
   background: -webkit-linear-gradient(
-    to right,
-    #5b86e5,
-    #36d1dc
+    to left,
+    #373b44,
+    #73c8a9
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
-    to right,
-    #5b86e5,
-    #36d1dc
+    to left,
+    #373b44,
+    #73c8a9
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   border-radius: 50%;

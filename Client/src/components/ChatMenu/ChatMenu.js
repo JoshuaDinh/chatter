@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./chatMenu.css";
 import SearchIcon from "@material-ui/icons/Search";
 import AddIcon from "@material-ui/icons/Add";
-import Conversations from "../conversations/Conversations";
+import Conversation from "../Conversation/Conversation";
 import { connect } from "react-redux";
 import { fetchConversations } from "../../actions/conversations";
 
@@ -27,12 +27,12 @@ const ChatMenu = ({ authUser, fetchConversations, conversations }) => {
           <SearchIcon className="icon" />
           <input
             type="text"
-            placeholder="Search for friends"
+            placeholder="Search Chats"
             className="chat-menu-input"
           />
         </form>
         {conversations.map((c) => {
-          return <Conversations chatId={c._id} friend={c.members[1]} />;
+          return <Conversation chatId={c._id} friend={c.members[1]} />;
         })}
       </div>
     </div>
@@ -43,7 +43,6 @@ const mapStateToProps = (state) => {
   return {
     authUser: state.auth.user,
     conversations: state.conversations.conversations,
-    // messages: state.messages.messages,
   };
 };
 
