@@ -128,11 +128,10 @@ router.delete("/:id", auth, async (req, res) => {
 });
 
 // @route Get /api/user/:id
-// @desc Get User account
+// @desc Get account information by _userId
 // @access Private
 
 router.get("/:id", async (req, res) => {
-  // get account information
   try {
     let user = await User.findById(req.params.id);
     const { password, id, ...other } = user._doc;
@@ -197,6 +196,19 @@ router.put("/:id/deleteFriend", async (req, res) => {
     }
   } else {
     res.status(403).json({ error: "You cant add your self as a friend" });
+  }
+});
+
+// @route Get /api/user
+// @desc Search All Users in DB
+// @access Public
+
+router.get("/", async (req, res) => {
+  try {
+    const user = await User.find({}).select(["-_id", "username", "email"]);
+    res.status(200).json(user);
+  } catch (err) {
+    return res.status(500).json(err);
   }
 });
 

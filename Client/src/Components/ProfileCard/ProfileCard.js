@@ -2,7 +2,7 @@ import React from "react";
 import "./profileCard.css";
 import AddIcon from "@material-ui/icons/Add";
 
-const ProfileCard = () => {
+const ProfileCard = ({ account }) => {
   return (
     <div className="profile-card">
       <img
@@ -10,10 +10,11 @@ const ProfileCard = () => {
         className="profile-card-avatar"
         alt=""
       />
+      {/* need images */}
       <div className="profile-card-info">
-        <h3>Audrey Davenport</h3>
-        <h4>AudreyDavenport@gmail.com</h4>
-        <h5>619-977-3574</h5>
+        <h3>{account.username}</h3>
+        <h4>{account.email}</h4>
+        {/* need account phone number */}
       </div>
       <div className="profile-card-add-container">
         <AddIcon className="profile-card-add-icon" />

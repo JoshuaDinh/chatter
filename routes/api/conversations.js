@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Conversation = require("../../models/Conversations");
+const Messages = require("../../models/Message");
 
 // @route Post /api/conversations
 // @desc Create new conversation
@@ -15,6 +16,25 @@ router.post("/", async (req, res) => {
   try {
     const savedConversation = await newConversation.save();
     res.status(200).json(savedConversation);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// @route Delete /api/conversations/userId
+// @desc Deletes conversation & all messages within
+// @access Private
+
+router.post("/:conversationId", async (req, res) => {
+  const conversationId = req.params.conversationId;
+  try {
+    const deleteConversation = await Conversation.findByIdAndDelete({
+      _id: conversationId,
+    });
+    const deleteMessages = await Messages.deleteMany({
+      conversationId: conversationId,
+    });
+    res.status(200).json("Conversation deleted");
   } catch (err) {
     res.status(500).json(err);
   }

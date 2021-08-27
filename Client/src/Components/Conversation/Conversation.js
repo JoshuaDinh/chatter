@@ -25,7 +25,7 @@ const Conversation = ({
   return (
     <div onClick={() => setCurrentChat(chatId)} className="conversation">
       <img
-        src="https://www.kindpng.com/picc/m/22-223863_no-avatar-png-circle-transparent-png.png"
+        src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_624206636_200013332000928034_376810.jpg"
         alt=""
         className="conversation-avatar"
       />
