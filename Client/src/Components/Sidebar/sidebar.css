@@ -1,0 +1,45 @@
+.sidebar {
+  width: 60px;
+  max-width: 60px;
+  border-right: 1px solid lightgrey;
+}
+
+.sidebar-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 60%;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; */
+}
+
+.sidebar-icon {
+  font-size: 2rem !important;
+}
+
+.sidebar-link,
+.sidebar-search {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 12%;
+  color: grey;
+  cursor: pointer;
+}
+.sidebar-link:hover,
+.isActive,
+.sidebar-search:hover {
+  color: whitesmoke !important;
+  background: #73c8a9; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #373b44,
+    #73c8a9
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #373b44,
+    #73c8a9
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

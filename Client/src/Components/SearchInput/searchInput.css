@@ -1,0 +1,26 @@
+.search-input-container {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: white;
+  border-bottom: 1px solid lightgrey;
+}
+
+.search-input {
+  width: 100%;
+  z-index: 100;
+}
+
+.search-input-icon {
+  font-size: 2rem !important;
+  color: grey;
+  margin-right: 10px;
+}
+
+.search-input-close-icon {
+  font-size: 2rem !important;
+  color: grey;
+  cursor: pointer;
+}
