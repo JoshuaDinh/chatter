@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* border-radius: 15px; */
   padding: 10px;
   margin: 15px 0;
   background: rgb(231, 231, 231, 0.5);
@@ -12,17 +11,7 @@
 }
 
 .conversation:hover {
-  background: #73c8a9; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to left,
-    #373b44,
-    #73c8a9
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to left,
-    #373b44,
-    #73c8a9
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #d3d3d3;
 }
 
 .conversation-avatar {

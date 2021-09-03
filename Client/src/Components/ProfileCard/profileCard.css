@@ -5,6 +5,7 @@
   padding: 15px;
   cursor: pointer;
   border-bottom: 1px solid lightgrey;
+  transition: 0.2s ease-in;
 }
 
 .profile-card:hover {
