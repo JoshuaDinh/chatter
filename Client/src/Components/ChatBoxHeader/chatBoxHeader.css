@@ -1,0 +1,26 @@
+.chat-box-header {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.chat-box-header-avatar {
+  height: 4rem;
+  width: 4rem;
+  background: #73c8a9; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #373b44,
+    #73c8a9
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #373b44,
+    #73c8a9
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  padding: 2px;
+  margin-left: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
