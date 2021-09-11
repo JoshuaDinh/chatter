@@ -6,18 +6,25 @@ const io = require("socket.io")(8900, {
 
 let socketUsers = [];
 
+// Creates array of all active socket users
 const addUser = (userId, socketId) => {
   !socketUsers.some((user) => user.userId === userId) &&
     socketUsers.push({ userId, socketId });
 };
+const removeUser = (socketId) => {
+  socketUsers.filter((user) => user.socketId !== socketId);
+};
 
 io.on("connection", (socket) => {
   console.log("a user connected");
-  // io.to(socketId)("welcome", "hello this is socket");
 
   socket.on("addUser", (userId) => {
     addUser(userId, socket.id);
-    // io.emit("getUsers", socketUsers);
-    console.log(socketUsers);
+    io.emit("getUsers", socketUsers);
+  });
+  socket.on("disconnect", () => {
+    console.log("a user has been removed");
+    removeUser(socket.id);
+    io.emit("getUsers", socketUsers);
   });
 });

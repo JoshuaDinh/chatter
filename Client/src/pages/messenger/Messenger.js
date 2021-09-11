@@ -9,7 +9,11 @@ import ChatBox from "../../Components/ChatBox/ChatBox";
 import { io } from "socket.io-client";
 
 const Messenger = ({ toggleSearch, user }) => {
-  const socket = useRef(io("ws://localhost:8900"));
+  const socket = useRef();
+
+  useEffect(() => {
+    socket.current = io("ws://localhost:8900");
+  });
 
   useEffect(() => {
     socket.current.emit("addUser", user?._id);
