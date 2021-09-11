@@ -5,6 +5,7 @@ import Message from "../../Components/Message/Message";
 import { connect } from "react-redux";
 import { fetchConversations } from "../../actions/conversations";
 import { fetchMessages } from "../../actions/messages";
+import ChatBoxHeader from "../ChatBoxHeader/ChatBoxHeader";
 
 const ChatBox = ({ fetchMessages, user, messages, selectedChatId }) => {
   useEffect(() => {
@@ -14,6 +15,8 @@ const ChatBox = ({ fetchMessages, user, messages, selectedChatId }) => {
   return (
     <div className="chat-box">
       <div className="chat-box-wrapper">
+        {/* Display only if conversation has been */}
+        {/* {selectedChatId && <ChatBoxHeader />} */}
         {selectedChatId ? (
           <div className="chat-box-messages">
             {messages?.map((msg) => {

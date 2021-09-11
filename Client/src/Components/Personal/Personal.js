@@ -1,8 +1,5 @@
 import React from "react";
 import "./personal.css";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import SettingsIcon from "@material-ui/icons/Settings";
-import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
 import { connect } from "react-redux";
 
 const Personal = ({ authUser }) => {
@@ -15,29 +12,23 @@ const Personal = ({ authUser }) => {
           className="personal-avatar"
           alt=""
         />
-        <h1>{authUser.username}</h1>
+        <h1>{authUser?.username}</h1>
         <p>
           status: <span>Online</span>
         </p>
-        <div className="personal-info-icons">
-          <AccountCircleIcon className="personal-info-icon" />
-          <EmojiEmotionsIcon className="personal-info-icon" />
-          <SettingsIcon className="personal-info-icon" />
-        </div>
       </div>
-
       <div className="personal-contact">
         <div className="personal-contact-item">
           <span>Phone:</span>
-          {authUser.phone ? (
-            <span>{authUser.phone}</span>
+          {authUser?.phone ? (
+            <span>{authUser?.phone}</span>
           ) : (
             <span>N/A</span>
           )}{" "}
         </div>
         <div className="personal-contact-item">
           <span>Email:</span>
-          <span>{authUser.email}</span>
+          <span>{authUser?.email}</span>
         </div>
       </div>
     </div>

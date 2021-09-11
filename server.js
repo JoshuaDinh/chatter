@@ -12,6 +12,7 @@ const messageRoute = require("./routes/api/messages");
 
 // initialize app config
 const app = express();
+
 connectDB();
 const port = process.env.PORT || 5000;
 
