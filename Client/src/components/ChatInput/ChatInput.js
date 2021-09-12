@@ -1,39 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import "./chatInput.css";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import SendIcon from "@material-ui/icons/Send";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import MicIcon from "@material-ui/icons/Mic";
-import { postMessage, setMessage } from "../../actions/messages";
 import { connect } from "react-redux";
+import axios from "axios";
 
-const ChatInput = ({
-  setMessage,
-  postMessage,
-  message,
-  selectedChatId,
-  user,
-  socket,
-  conversations,
-}) => {
-  console.log(conversations);
-
+const ChatInput = ({ selectedChatId, user, socket, messages, setMessages }) => {
+  const [message, setMessage] = useState("");
   // const recieverId = conversations.find(
   //   conversatons === selectedChatId && console.log(recieverId)
   // );
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const messageBody = {
       conversationId: selectedChatId,
       sender: user._id,
       message: message,
     };
-    socket.current.emit("sendMessage", {
-      // recieverId,
-      messageBody,
-    });
-    postMessage(messageBody);
+    // socket.current.emit("sendMessage", {
+    //   // recieverId,
+    //   messageBody,
+    // });
+    try {
+      const response = await axios.post("api/messages", messageBody);
+      setMessages([...messages, messageBody]);
+    } catch (err) {}
   };
 
   return (
@@ -65,9 +59,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
     selectedChatId: state.currentChat.chatId,
-    message: state.messages.message,
-    conversations: state.conversations.conversations,
   };
 };
 
-export default connect(mapStateToProps, { postMessage, setMessage })(ChatInput);
+export default connect(mapStateToProps)(ChatInput);
