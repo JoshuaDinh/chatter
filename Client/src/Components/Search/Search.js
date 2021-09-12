@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ProfileCard from "../ProfileCard/ProfileCard";
 import SearchInput from "../SearchInput/SearchInput";
-import { connect } from "react-redux";
-import { fetchDiscover } from "../../actions/discover";
+import axios from "axios";
 import "./search.css";
 
-const Search = ({ fetchDiscover, accounts }) => {
+const Search = () => {
+  const [accounts, setAccounts] = useState([]);
   useEffect(() => {
-    fetchDiscover();
+    const fetchData = async () => {
+      const response = await axios.get("api/user");
+      setAccounts(response.data);
+    };
+    fetchData();
   }, []);
 
   return (
@@ -22,10 +26,4 @@ const Search = ({ fetchDiscover, accounts }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    accounts: state.discover.accounts,
-  };
-};
-
-export default connect(mapStateToProps, { fetchDiscover })(Search);
+export default Search;
