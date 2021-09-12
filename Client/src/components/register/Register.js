@@ -1,21 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./register.css";
 import Alert from "../Alert/Alert";
-import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { register } from "../../actions/auth";
 import { setAlert } from "../../actions/alert";
-import { setRegisterForm } from "../../actions/registerForm";
-import { setToggleTermsOfService } from "../../actions/toggleTermsOfService";
 
-const Register = ({
-  setRegisterForm,
-  setToggleTermsOfService,
-  setAlert,
-  register,
-  isAuthenticated,
-}) => {
+import RegisterPolicy from "../RegisterPolicy/RegisterPolicy";
+
+const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -40,10 +33,10 @@ const Register = ({
   };
 
   // Redirect if succesful register
+
   if (isAuthenticated) {
     return <Redirect to="/messenger" />;
   }
-
   return (
     <form className="register-form" onSubmit={(e) => onSubmit(e)}>
       <Alert />
@@ -88,19 +81,7 @@ const Register = ({
           minLength="6"
         />
       </div>
-      <div className="register-policy">
-        <input type="checkbox" />
-        <p>
-          I agreen to the
-          <span onClick={setToggleTermsOfService}>
-            Terms of Service & Privacy Policy
-          </span>
-        </p>
-      </div>
-      <input className="register-button" type="submit" value="Sign Up" />
-      <div className="register-return-button" onClick={setRegisterForm}>
-        Already have an account?
-      </div>
+      <RegisterPolicy />
     </form>
   );
 };
@@ -108,13 +89,11 @@ const Register = ({
 const mapStateToProps = (state) => {
   return {
     alert: state.alert,
-    inAuthenticated: state.auth.isAuthenticated,
+    isAuthenticated: state.auth.isAuthenticated,
   };
 };
 
 export default connect(mapStateToProps, {
   register,
   setAlert,
-  setToggleTermsOfService,
-  setRegisterForm,
 })(Register);
