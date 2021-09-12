@@ -27,6 +27,8 @@ const ChatInput = ({ selectedChatId, user, socket, messages, setMessages }) => {
     try {
       const response = await axios.post("api/messages", messageBody);
       setMessages([...messages, messageBody]);
+      // Clears input
+      setMessage("");
     } catch (err) {}
   };
 
@@ -41,6 +43,7 @@ const ChatInput = ({ selectedChatId, user, socket, messages, setMessages }) => {
         className="chat-input"
         type="text"
         onChange={(e) => setMessage(e.target.value)}
+        value={message}
       ></input>
       <InsertEmoticonIcon className="icon" />
       <MicIcon className="icon" />
