@@ -37,6 +37,7 @@ const ChatMenu = ({ authUser }) => {
           return (
             <Conversation
               chatId={c._id}
+              // Checks both members in chatId response - determines which user is auth & which is a friend
               friend={c.members.find((friend) => authUser?._id !== friend)}
               setConversations={setConversations}
               conversations={conversations}
