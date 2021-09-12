@@ -34,7 +34,7 @@ const Conversation = ({ chatId, setCurrentChat, friend }) => {
         <span>+</span>
         {messages.length}
       </div> */}
-      <DeleteForeverIcon className="conversation-delete-icon" />{" "}
+      <DeleteForeverIcon className="conversation-delete-icon" />
     </div>
   );
 };

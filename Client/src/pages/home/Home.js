@@ -23,7 +23,7 @@ const Home = ({ registerForm, termsOfService }) => {
           <span className="home-dot-animation">.</span>
           <span className="home-dot-animation">.</span>
         </div>
-        {registerForm ? <Register /> : <Login />}
+        {registerForm ? <Register  /> : <Login />}
         {termsOfService === true && <TermsOfService />}
       </div>
     </div>
