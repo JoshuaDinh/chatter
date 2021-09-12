@@ -7,7 +7,7 @@ import Personal from "../../Components/Personal/Personal";
 import Search from "../../Components/Search/Search";
 import ChatBox from "../../Components/ChatBox/ChatBox";
 
-const Messenger = ({ toggleSearch, user }) => {
+const Messenger = ({ toggleSearch }) => {
   return (
     <div className="messenger">
       <Sidebar />
@@ -20,7 +20,6 @@ const Messenger = ({ toggleSearch, user }) => {
 };
 const mapStateToProps = (state) => {
   return {
-    user: state.auth.user,
     toggleSearch: state.toggleSearch.toggle,
   };
 };

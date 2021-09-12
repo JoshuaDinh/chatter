@@ -13,7 +13,15 @@ const ChatInput = ({
   message,
   selectedChatId,
   user,
+  socket,
+  conversations,
 }) => {
+  console.log(conversations);
+
+  // const recieverId = conversations.find(
+  //   conversatons === selectedChatId && console.log(recieverId)
+  // );
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const messageBody = {
@@ -21,6 +29,10 @@ const ChatInput = ({
       sender: user._id,
       message: message,
     };
+    socket.current.emit("sendMessage", {
+      // recieverId,
+      messageBody,
+    });
     postMessage(messageBody);
   };
 
@@ -54,6 +66,7 @@ const mapStateToProps = (state) => {
     user: state.auth.user,
     selectedChatId: state.currentChat.chatId,
     message: state.messages.message,
+    conversations: state.conversations.conversations,
   };
 };
 

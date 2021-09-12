@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import "./message.css";
 import { format } from "timeago.js";
 // import SearchIcon from "@material-ui/icons/Search";
 
 const Message = ({ own, message }) => {
+  const scrollRef = useRef();
+
+  useEffect(() => {
+    scrollRef?.current.scrollIntoView({ behavior: "smooth" });
+  }, [message]);
+
   return (
-    <div className={`message ${own && "own"} `}>
+    <div ref={scrollRef} className={`message ${own && "own"} `}>
       <div className="message-container ">
         <img
           src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_624206636_200013332000928034_376810.jpg"
