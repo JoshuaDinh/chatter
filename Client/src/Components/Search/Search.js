@@ -6,6 +6,7 @@ import "./search.css";
 
 const Search = () => {
   const [accounts, setAccounts] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get("api/user");

@@ -1,17 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./chatMenu.css";
 import SearchIcon from "@material-ui/icons/Search";
 import AddIcon from "@material-ui/icons/Add";
 import Conversation from "../Conversation/Conversation";
+import axios from "axios";
 import { connect } from "react-redux";
-import { fetchConversations } from "../../actions/conversations";
 
-const ChatMenu = ({ authUser, fetchConversations, conversations }) => {
-  // Fecth conversations by userId after store is loaded userid !=null
+const ChatMenu = ({ authUser }) => {
+  const [conversations, setConversations] = useState([]);
+
   useEffect(() => {
-    if (authUser !== null) {
-      fetchConversations(authUser._id);
-    }
+    const fetchData = async () => {
+      const response = await axios.get(`api/conversations/${authUser?._id}`);
+      setConversations(response.data);
+    };
+    fetchData();
   }, [authUser]);
 
   return (
@@ -47,10 +50,7 @@ const ChatMenu = ({ authUser, fetchConversations, conversations }) => {
 const mapStateToProps = (state) => {
   return {
     authUser: state.auth.user,
-    conversations: state.conversations.conversations,
   };
 };
 
-export default connect(mapStateToProps, {
-  fetchConversations,
-})(ChatMenu);
+export default connect(mapStateToProps, {})(ChatMenu);
