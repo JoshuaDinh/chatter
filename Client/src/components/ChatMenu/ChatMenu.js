@@ -32,7 +32,12 @@ const ChatMenu = ({ authUser, fetchConversations, conversations }) => {
           />
         </form>
         {conversations.map((c) => {
-          return <Conversation chatId={c._id} friend={c.members[1]} />;
+          return (
+            <Conversation
+              chatId={c._id}
+              friend={c.members.find((friend) => authUser?._id !== friend)}
+            />
+          );
         })}
       </div>
     </div>

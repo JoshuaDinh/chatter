@@ -1,25 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./conversation.css";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
-
+import axios from "axios";
 import { connect } from "react-redux";
 import { setCurrentChat } from "../../actions/currentChat";
-import { fetchUser } from "../../actions/user";
-import { fetchMessages } from "../../actions/messages";
 
-const Conversation = ({
-  chatId,
-  setCurrentChat,
-  friend,
-  user,
-  fetchUser,
-  messages,
-  fetchMessages,
-}) => {
+const Conversation = ({ chatId, setCurrentChat, friend }) => {
+  const [friendData, setFriendData] = useState([]);
+  const [messageDisplay, setMessageDisplay] = useState([]);
+
   useEffect(() => {
-    fetchUser(friend);
-    // Get Message for each chatId - used to display last message on coversation component
-    fetchMessages(chatId);
+    const fetchData = async () => {
+      const friendInfo = await axios.get(`api/user/${friend}`);
+      const singleMessage = await axios.get(`api/messages/${chatId}`);
+      setFriendData(friendInfo.data);
+      setMessageDisplay(singleMessage.data);
+    };
+    fetchData();
   }, []);
 
   return (
@@ -30,8 +27,8 @@ const Conversation = ({
         className="conversation-avatar"
       />
       <div className="conversation-info">
-        <span>{user?.username}</span>
-        <p>{messages[messages.length - 1]?.message}</p>
+        <span>{friendData.username}</span>
+        <p>{messageDisplay[messageDisplay.length - 1]?.message}</p>
       </div>
       {/* <div className="conversation-new-message">
         <span>+</span>
@@ -43,14 +40,9 @@ const Conversation = ({
 };
 
 const mapStateToProps = (state) => {
-  return {
-    user: state.user.users,
-    messages: state.messages.messages,
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, {
   setCurrentChat,
-  fetchUser,
-  fetchMessages,
 })(Conversation);
