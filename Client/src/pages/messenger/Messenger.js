@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import "./messenger.css";
 import { connect } from "react-redux";
 import Sidebar from "../../Components/Sidebar/Sidebar";

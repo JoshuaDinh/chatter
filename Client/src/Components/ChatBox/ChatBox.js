@@ -3,7 +3,6 @@ import "./chatbox.css";
 import ChatInput from "../../Components/ChatInput/ChatInput";
 import Message from "../../Components/Message/Message";
 import { connect } from "react-redux";
-import { fetchConversations } from "../../actions/conversations";
 // import ChatBoxHeader from "../ChatBoxHeader/ChatBoxHeader";
 import { io } from "socket.io-client";
 import axios from "axios";
@@ -76,6 +75,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  fetchConversations,
-})(ChatBox);
+export default connect(mapStateToProps, {})(ChatBox);
