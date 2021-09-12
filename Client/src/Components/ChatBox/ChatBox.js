@@ -18,7 +18,10 @@ const ChatBox = ({ user, selectedChatId }) => {
       const response = await axios.get(`api/messages/${selectedChatId}`);
       setMessages(response.data);
     };
-    fetchData();
+
+    if (selectedChatId) {
+      fetchData();
+    }
   }, [selectedChatId]);
 
   useEffect(() => {
@@ -69,8 +72,6 @@ const ChatBox = ({ user, selectedChatId }) => {
 const mapStateToProps = (state) => {
   return {
     user: state.auth.user,
-    conversations: state.conversations.conversations,
-    // messages: state.messages.messages,
     selectedChatId: state.currentChat.chatId,
   };
 };

@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// @route Delete /api/conversations/userId
+// @route Delete /api/conversations/conversationId
 // @desc Deletes conversation & all messages within
 // @access Private
 

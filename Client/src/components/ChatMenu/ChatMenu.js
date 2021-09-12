@@ -15,8 +15,7 @@ const ChatMenu = ({ authUser }) => {
       setConversations(response.data);
     };
     fetchData();
-  }, [authUser]);
-
+  }, [authUser, conversations]);
   return (
     <div className="chat-menu">
       <div className="chat-menu-wrapper">
@@ -39,6 +38,8 @@ const ChatMenu = ({ authUser }) => {
             <Conversation
               chatId={c._id}
               friend={c.members.find((friend) => authUser?._id !== friend)}
+              setConversations={setConversations}
+              conversations={conversations}
             />
           );
         })}

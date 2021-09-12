@@ -5,7 +5,13 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { setCurrentChat } from "../../actions/currentChat";
 
-const Conversation = ({ chatId, setCurrentChat, friend }) => {
+const Conversation = ({
+  chatId,
+  setCurrentChat,
+  friend,
+  setConversations,
+  conversations,
+}) => {
   const [friendData, setFriendData] = useState([]);
   const [messageDisplay, setMessageDisplay] = useState([]);
 
@@ -18,6 +24,11 @@ const Conversation = ({ chatId, setCurrentChat, friend }) => {
     };
     fetchData();
   }, []);
+
+  const deleteChat = async () => {
+    await axios.post(`/api/conversations/${chatId}`);
+    setConversations([...conversations]);
+  };
 
   return (
     <div onClick={() => setCurrentChat(chatId)} className="conversation">
@@ -34,7 +45,10 @@ const Conversation = ({ chatId, setCurrentChat, friend }) => {
         <span>+</span>
         {messages.length}
       </div> */}
-      <DeleteForeverIcon className="conversation-delete-icon" />
+      <DeleteForeverIcon
+        className="conversation-delete-icon"
+        onClick={() => deleteChat()}
+      />
     </div>
   );
 };
