@@ -36,8 +36,7 @@ const ChatInput = ({
       message: message,
     };
 
-    const recieverId = members.find((friend) => authUser._id !== friend);
-    console.log(recieverId);
+    // const recieverId = members.find((friend) => authUser._id !== friend);
     // socket.current.emit("sendMessage", {
     //   recieverId,
     //   messageBody,
