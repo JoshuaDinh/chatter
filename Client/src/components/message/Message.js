@@ -18,12 +18,10 @@ const Message = ({ own, message }) => {
           alt=""
           className="message-avatar"
         />
-        <p className="message-text">
-          {message?.text || message?.message}
-          <span className="message-timestamp own">
-            {format(message.createdAt)}
-          </span>
-        </p>
+        <p className="message-text">{message?.text || message?.message}</p>{" "}
+        <span className="message-timestamp own">
+          {format(message.createdAt)}
+        </span>
       </div>
     </div>
   );
