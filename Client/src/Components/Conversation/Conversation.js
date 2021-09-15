@@ -9,8 +9,8 @@ const Conversation = ({
   chatId,
   setCurrentChat,
   friend,
-  setConversations,
-  conversations,
+  setChatDeleted,
+  chatDeleted,
 }) => {
   const [friendData, setFriendData] = useState([]);
   const [messageDisplay, setMessageDisplay] = useState([]);
@@ -25,10 +25,10 @@ const Conversation = ({
     fetchData();
   }, []);
 
-  console.log(friendData);
   const deleteChat = async () => {
     await axios.post(`/api/conversations/${chatId}`);
-    setConversations([...conversations]);
+    setChatDeleted(!chatDeleted);
+    setCurrentChat(null);
   };
 
   return (
@@ -42,10 +42,7 @@ const Conversation = ({
         <span>{friendData.username}</span>
         <p>{messageDisplay[messageDisplay.length - 1]?.message}</p>
       </div>
-      {/* <div className="conversation-new-message">
-        <span>+</span>
-        {messages.length}
-      </div> */}
+
       <DeleteForeverIcon
         className="conversation-delete-icon"
         onClick={() => deleteChat()}

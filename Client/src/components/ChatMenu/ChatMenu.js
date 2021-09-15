@@ -9,6 +9,8 @@ import Friend from "../Friend/Friend";
 
 const ChatMenu = ({ authUser, selectedChatId }) => {
   const [conversations, setConversations] = useState([]);
+  const [chatDeleted, setChatDeleted] = useState(false);
+
   const [toggleChats, setToggleChats] = useState(true);
   const [toggleFriends, setToggleFriends] = useState(false);
 
@@ -18,7 +20,7 @@ const ChatMenu = ({ authUser, selectedChatId }) => {
       setConversations(response.data);
     };
     fetchData();
-  }, [authUser, selectedChatId]);
+  }, [authUser, selectedChatId, chatDeleted]);
 
   // Switchs between displaying conversations and friends list
   const toggleChatMenu = () => {
@@ -69,8 +71,8 @@ const ChatMenu = ({ authUser, selectedChatId }) => {
                 chatId={c._id}
                 // Checks both members in chatId response - determines which user is auth & which is a friend
                 friend={c.members.find((friend) => authUser?._id !== friend)}
-                setConversations={setConversations}
-                conversations={conversations}
+                setChatDeleted={setChatDeleted}
+                chatDeleted={chatDeleted}
               />
             );
           })}
