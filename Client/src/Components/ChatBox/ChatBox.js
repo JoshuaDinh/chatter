@@ -7,16 +7,16 @@ import { connect } from "react-redux";
 import { io } from "socket.io-client";
 import axios from "axios";
 
-const ChatBox = ({ user, selectedChatId }) => {
+const ChatBox = ({ authUser, selectedChatId }) => {
   const [messages, setMessages] = useState([]);
+
   const socket = useRef();
   const [arrivalMessage, setArrivalMessage] = useState("");
 
   useEffect(() => {
-    // fetchMessages(selectedChatId);
     const fetchData = async () => {
-      const response = await axios.get(`api/messages/${selectedChatId}`);
-      setMessages(response.data);
+      const messageResponse = await axios.get(`api/messages/${selectedChatId}`);
+      setMessages(messageResponse.data);
     };
 
     if (selectedChatId) {
@@ -49,7 +49,9 @@ const ChatBox = ({ user, selectedChatId }) => {
         {selectedChatId ? (
           <div className="chat-box-messages">
             {messages?.map((msg) => {
-              return <Message message={msg} own={msg.sender === user._id} />;
+              return (
+                <Message message={msg} own={msg.sender === authUser._id} />
+              );
             })}
           </div>
         ) : (
@@ -71,7 +73,7 @@ const ChatBox = ({ user, selectedChatId }) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.auth.user,
+    authUser: state.auth.user,
     selectedChatId: state.currentChat.chatId,
   };
 };

@@ -4,10 +4,13 @@ import SearchIcon from "@material-ui/icons/Search";
 import AddIcon from "@material-ui/icons/Add";
 import Conversation from "../Conversation/Conversation";
 import axios from "axios";
+import Search from "../Search/Search";
+import { FETCH_ALL_FRIENDS } from "../../requests";
 import { connect } from "react-redux";
 
 const ChatMenu = ({ authUser }) => {
   const [conversations, setConversations] = useState([]);
+  const [searchFriends, setSearchFriends] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,13 +19,23 @@ const ChatMenu = ({ authUser }) => {
     };
     fetchData();
   }, [authUser, conversations]);
+
   return (
     <div className="chat-menu">
+      {searchFriends && (
+        <Search
+          request={FETCH_ALL_FRIENDS}
+          exit={() => setSearchFriends(!searchFriends)}
+        />
+      )}
       <div className="chat-menu-wrapper">
         <div className="chat-menu-header">
           <h2>Chat's</h2>
           <div className="chat-menu-add-conversation">
-            <AddIcon className="chat-menu-add-icon " />
+            <AddIcon
+              className="chat-menu-add-icon"
+              onClick={() => setSearchFriends(!searchFriends)}
+            />
           </div>
         </div>
         <form className="chat-menu-form">

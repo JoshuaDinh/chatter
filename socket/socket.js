@@ -28,13 +28,13 @@ io.on("connection", (socket) => {
   });
 
   // Send and recieve messages
-  socket.on("sendMessage", ({ senderId, conversationId, text }) => {
-    // const user = getUser(senderId);
-    // io.to(senderId.socketId).emit("getMessage", {
-    //   senderId,
-    //   conversationId,
-    //   text,
-    // });
+  socket.on("sendMessage", ({ senderId, conversationId, text, recieverId }) => {
+    const user = getUser(recieverId);
+    io.to(user.socketId).emit("getMessage", {
+      senderId,
+      conversationId,
+      text,
+    });
   });
   // Remove users from array on disconnection
   socket.on("disconnect", () => {

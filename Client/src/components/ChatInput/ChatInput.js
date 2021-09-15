@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./chatInput.css";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import SendIcon from "@material-ui/icons/Send";
@@ -7,21 +7,39 @@ import MicIcon from "@material-ui/icons/Mic";
 import { connect } from "react-redux";
 import axios from "axios";
 
-const ChatInput = ({ selectedChatId, user, socket, messages, setMessages }) => {
+const ChatInput = ({
+  selectedChatId,
+  authUser,
+  socket,
+  messages,
+  setMessages,
+}) => {
   const [message, setMessage] = useState("");
-  // const recieverId = conversations.find(
-  //   conversatons === selectedChatId && console.log(recieverId)
-  // );
+  const [members, setMembers] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const conversationMembersResponse = await axios.get(
+        `api/conversations/single/${selectedChatId}`
+      );
+      setMembers(conversationMembersResponse.data.members);
+    };
+
+    fetchData();
+  }, [selectedChatId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const messageBody = {
       conversationId: selectedChatId,
-      sender: user._id,
+      sender: authUser._id,
       message: message,
     };
+
+    const recieverId = members.find((friend) => authUser._id !== friend);
+    console.log(recieverId);
     // socket.current.emit("sendMessage", {
-    //   // recieverId,
+    //   recieverId,
     //   messageBody,
     // });
     try {
@@ -60,7 +78,7 @@ const ChatInput = ({ selectedChatId, user, socket, messages, setMessages }) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.auth.user,
+    authUser: state.auth.user,
     selectedChatId: state.currentChat.chatId,
   };
 };

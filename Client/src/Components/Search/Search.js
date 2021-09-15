@@ -4,12 +4,12 @@ import SearchInput from "../SearchInput/SearchInput";
 import axios from "axios";
 import "./search.css";
 
-const Search = () => {
+const Search = ({ request, exit }) => {
   const [accounts, setAccounts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("api/user");
+      const response = await axios.get(request);
       setAccounts(response.data);
     };
     fetchData();
@@ -17,7 +17,7 @@ const Search = () => {
 
   return (
     <div className="search">
-      <SearchInput />
+      <SearchInput exit={exit} />
       <div className="search-grid">
         {accounts.map((account) => {
           return <ProfileCard account={account} />;
