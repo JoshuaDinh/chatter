@@ -1,8 +1,20 @@
 import React from "react";
 import "./profileCard.css";
-import AddIcon from "@material-ui/icons/Add";
+import { connect } from "react-redux";
+import axios from "axios";
 
-const ProfileCard = ({ account }) => {
+const ProfileCard = ({ account, authUser }) => {
+  const addFriend = async () => {
+    const body = {
+      userId: account._id,
+    };
+    try {
+      await axios.put(`api/user/${authUser._id}/addFriend`, body);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div className="profile-card">
       <img
@@ -16,11 +28,20 @@ const ProfileCard = ({ account }) => {
         <h4>{account.email}</h4>
         {/* need account phone number */}
       </div>
-      <div className="profile-card-add-container">
-        <AddIcon className="profile-card-add-icon" />
+      <div
+        aria="button"
+        className="profile-card-add-container"
+        onClick={() => addFriend()}
+      >
+        Add
       </div>
     </div>
   );
 };
 
-export default ProfileCard;
+const mapStateToProps = (state) => {
+  return {
+    authUser: state.auth.user,
+  };
+};
+export default connect(mapStateToProps, {})(ProfileCard);
