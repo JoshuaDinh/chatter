@@ -4,14 +4,13 @@ import SearchIcon from "@material-ui/icons/Search";
 import AddIcon from "@material-ui/icons/Add";
 import Conversation from "../Conversation/Conversation";
 import axios from "axios";
-import Search from "../Search/Search";
-import { FETCH_ALL_FRIENDS } from "../../requests";
 import { connect } from "react-redux";
+import Friend from "../Friend/Friend";
 
 const ChatMenu = ({ authUser }) => {
   const [conversations, setConversations] = useState([]);
   const [toggleChats, setToggleChats] = useState(true);
-  // const [searchFriends, setSearchFriends] = useState(false);
+  const [toggleFriends, setToggleFriends] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,24 +18,25 @@ const ChatMenu = ({ authUser }) => {
       setConversations(response.data);
     };
     fetchData();
-  }, [authUser, conversations]);
+  }, [authUser]);
+
+  // Switchs between displaying conversations and friends list
+  const toggleChatMenu = () => {
+    setToggleChats(true);
+    setToggleFriends(false);
+  };
+  const toggleFriendMenu = () => {
+    setToggleChats(false);
+    setToggleFriends(true);
+  };
 
   return (
     <div className="chat-menu">
-      {/* {searchFriends && (
-        <Search
-          request={FETCH_ALL_FRIENDS}
-          exit={() => setSearchFriends(!searchFriends)}
-        />
-      )} */}
       <div className="chat-menu-wrapper">
         <div className="chat-menu-header">
-          <h2>Chat's</h2>
+          <h1>Chats</h1>
           <div className="chat-menu-add-conversation">
-            <AddIcon
-              className="chat-menu-add-icon"
-              // onClick={() => setSearchFriends(!searchFriends)}
-            />
+            <AddIcon className="chat-menu-add-icon" />
           </div>
         </div>
         <form className="chat-menu-form">
@@ -48,11 +48,21 @@ const ChatMenu = ({ authUser }) => {
           />
         </form>
         <div className="chat-menu-selection">
-          <h3 onClick={() => setToggleChats(true)}>Chats</h3>
+          <h3
+            className={toggleChats && "activeColor"}
+            onClick={() => toggleChatMenu()}
+          >
+            Chats
+          </h3>
           <h3>|</h3>
-          <h3 onClick={() => setToggleChats(false)}>Friends</h3>
+          <h3
+            className={toggleFriends && "activeColor"}
+            onClick={() => toggleFriendMenu()}
+          >
+            Friends
+          </h3>
         </div>
-        {toggleChats ? (
+        {toggleChats &&
           conversations.map((c) => {
             return (
               <Conversation
@@ -63,10 +73,11 @@ const ChatMenu = ({ authUser }) => {
                 conversations={conversations}
               />
             );
-          })
-        ) : (
-          <div>friends</div>
-        )}
+          })}
+        {toggleFriends &&
+          authUser.friendsList.map((friend) => {
+            return <Friend friend={friend} />;
+          })}
       </div>
     </div>
   );

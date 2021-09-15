@@ -76,4 +76,11 @@
   display: flex;
   justify-content: space-evenly;
   color: grey;
+  cursor: pointer;
+}
+
+.activeColor {
+  background: -webkit-linear-gradient(#373b44, #73c8a9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
