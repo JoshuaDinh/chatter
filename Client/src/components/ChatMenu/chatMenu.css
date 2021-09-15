@@ -71,3 +71,9 @@
   border: none;
   outline: none;
 }
+
+.chat-menu-selection {
+  display: flex;
+  justify-content: space-evenly;
+  color: grey;
+}

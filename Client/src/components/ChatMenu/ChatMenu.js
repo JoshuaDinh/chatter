@@ -10,7 +10,8 @@ import { connect } from "react-redux";
 
 const ChatMenu = ({ authUser }) => {
   const [conversations, setConversations] = useState([]);
-  const [searchFriends, setSearchFriends] = useState(false);
+  const [toggleChats, setToggleChats] = useState(true);
+  // const [searchFriends, setSearchFriends] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,19 +23,19 @@ const ChatMenu = ({ authUser }) => {
 
   return (
     <div className="chat-menu">
-      {searchFriends && (
+      {/* {searchFriends && (
         <Search
           request={FETCH_ALL_FRIENDS}
           exit={() => setSearchFriends(!searchFriends)}
         />
-      )}
+      )} */}
       <div className="chat-menu-wrapper">
         <div className="chat-menu-header">
           <h2>Chat's</h2>
           <div className="chat-menu-add-conversation">
             <AddIcon
               className="chat-menu-add-icon"
-              onClick={() => setSearchFriends(!searchFriends)}
+              // onClick={() => setSearchFriends(!searchFriends)}
             />
           </div>
         </div>
@@ -46,17 +47,26 @@ const ChatMenu = ({ authUser }) => {
             className="chat-menu-input"
           />
         </form>
-        {conversations.map((c) => {
-          return (
-            <Conversation
-              chatId={c._id}
-              // Checks both members in chatId response - determines which user is auth & which is a friend
-              friend={c.members.find((friend) => authUser?._id !== friend)}
-              setConversations={setConversations}
-              conversations={conversations}
-            />
-          );
-        })}
+        <div className="chat-menu-selection">
+          <h3 onClick={() => setToggleChats(true)}>Chats</h3>
+          <h3>|</h3>
+          <h3 onClick={() => setToggleChats(false)}>Friends</h3>
+        </div>
+        {toggleChats ? (
+          conversations.map((c) => {
+            return (
+              <Conversation
+                chatId={c._id}
+                // Checks both members in chatId response - determines which user is auth & which is a friend
+                friend={c.members.find((friend) => authUser?._id !== friend)}
+                setConversations={setConversations}
+                conversations={conversations}
+              />
+            );
+          })
+        ) : (
+          <div>friends</div>
+        )}
       </div>
     </div>
   );
