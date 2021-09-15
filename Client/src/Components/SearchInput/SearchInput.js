@@ -5,7 +5,7 @@ import CancelPresentationIcon from "@material-ui/icons/CancelPresentation";
 import { setToggleSearch } from "../../actions/toggleSearch";
 import { connect } from "react-redux";
 
-const SearchInput = ({ setToggleSearch, exit }) => {
+const SearchInput = ({ setToggleSearch }) => {
   return (
     <div className="search-input-container">
       <SearchIcon
@@ -15,7 +15,7 @@ const SearchInput = ({ setToggleSearch, exit }) => {
       <input className="search-input" placeholder="Search for friends" />
       <CancelPresentationIcon
         className="search-input-close-icon"
-        onClick={exit}
+        onClick={setToggleSearch}
       />
     </div>
   );

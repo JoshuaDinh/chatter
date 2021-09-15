@@ -6,7 +6,6 @@ import ChatMenu from "../../Components/ChatMenu/ChatMenu";
 import Personal from "../../Components/Personal/Personal";
 import Search from "../../Components/Search/Search";
 import ChatBox from "../../Components/ChatBox/ChatBox";
-import { FETCH_ALL_USERS } from "../../requests";
 import { setToggleSearch } from "../../actions/toggleSearch";
 
 const Messenger = ({ toggleSearch }) => {
@@ -14,9 +13,7 @@ const Messenger = ({ toggleSearch }) => {
     <div className="messenger">
       <Sidebar />
       <ChatMenu />
-      {/* {toggleSearch && (
-        <Search request={FETCH_ALL_USERS} exit={() => setToggleSearch()} />
-      )} */}
+      {toggleSearch && <Search />}
       <ChatBox />
       <Personal />
     </div>

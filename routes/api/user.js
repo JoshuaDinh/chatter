@@ -205,7 +205,7 @@ router.put("/:id/deleteFriend", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const user = await User.find({}).select(["-_id", "username", "email"]);
+    const user = await User.find({}).select(["_id", "username", "email"]);
     res.status(200).json(user);
   } catch (err) {
     return res.status(500).json(err);
