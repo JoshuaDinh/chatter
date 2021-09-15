@@ -54,5 +54,17 @@ router.get("/:userId", async (req, res) => {
     res.status(500).json(err);
   }
 });
+// @route Get /api/conversations/single/conversationId
+// @desc get conversation by conversationId
+// @access Private
+
+router.get("/single/:conversationId", async (req, res) => {
+  try {
+    const conversation = await Conversation.findById(req.params.conversationId);
+    res.status(200).json(conversation);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;
