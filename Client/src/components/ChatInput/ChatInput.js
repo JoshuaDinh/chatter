@@ -17,16 +17,16 @@ const ChatInput = ({
   const [message, setMessage] = useState("");
   const [members, setMembers] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const conversationMembersResponse = await axios.get(
-        `api/conversations/single/${selectedChatId}`
-      );
-      setMembers(conversationMembersResponse.data.members);
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const conversationMembersResponse = await axios.get(
+  //       `api/conversations/single/${selectedChatId}`
+  //     );
+  //     setMembers(conversationMembersResponse.data.members);
+  //   };
 
-    fetchData();
-  }, [selectedChatId]);
+  //   fetchData();
+  // }, [selectedChatId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

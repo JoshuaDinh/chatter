@@ -7,7 +7,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import Friend from "../Friend/Friend";
 
-const ChatMenu = ({ authUser }) => {
+const ChatMenu = ({ authUser, selectedChatId }) => {
   const [conversations, setConversations] = useState([]);
   const [toggleChats, setToggleChats] = useState(true);
   const [toggleFriends, setToggleFriends] = useState(false);
@@ -18,7 +18,7 @@ const ChatMenu = ({ authUser }) => {
       setConversations(response.data);
     };
     fetchData();
-  }, [authUser]);
+  }, [authUser, selectedChatId]);
 
   // Switchs between displaying conversations and friends list
   const toggleChatMenu = () => {
@@ -86,6 +86,7 @@ const ChatMenu = ({ authUser }) => {
 const mapStateToProps = (state) => {
   return {
     authUser: state.auth.user,
+    selectedChatId: state.currentChat.chatId,
   };
 };
 
