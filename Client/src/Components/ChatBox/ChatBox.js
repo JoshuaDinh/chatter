@@ -24,22 +24,29 @@ const ChatBox = ({ authUser, selectedChatId }) => {
     }
   }, [selectedChatId]);
 
-  useEffect(() => {
-    // socket.current = io("ws://localhost:8900");
-    // socket.current.on("getMessage", (data) => console.log(data));
-    // setArrivalMessage({
-    //   sender: data.senderId,
-    //   text: data.text,
-    //   creqatedAt: Date.now(),
-    // });
-  }, []);
+  // useEffect(() => {
+  //   socket.current = io("ws://localhost:8900");
+  //   socket.current.on("getMessage", (data) =>
+  //     setArrivalMessage({
+  //       sender: data.sender,
+  //       message: data.message,
+  //       createdAt: Date.now(),
+  //     })
+  //   );
+  // }, []);
 
   // useEffect(() => {
-  //   socket.current.emit("addUser", user?._id);
+  //   arrivalMessage &&
+  //     selectedChatId.members.includes(arrivalMessage.sender) &&
+  //     setMessages((prev) => [...prev, arrivalMessage]);
+  // }, [arrivalMessage]);
+
+  // useEffect(() => {
+  //   socket.current.emit("addUser", authUser?._id);
   //   socket.current.on("getUsers", (socketUsers) => {
   //     console.log(socketUsers);
   //   });
-  // }, [user]);
+  // }, [authUser]);
 
   return (
     <div className="chat-box">

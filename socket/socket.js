@@ -28,14 +28,18 @@ io.on("connection", (socket) => {
   });
 
   // Send and recieve messages
-  socket.on("sendMessage", ({ senderId, conversationId, text, recieverId }) => {
-    const user = getUser(recieverId);
-    io.to(user.socketId).emit("getMessage", {
-      senderId,
-      conversationId,
-      text,
-    });
-  });
+  socket.on(
+    "sendMessage",
+    ({ sender, conversationId, message, recieverId }) => {
+      const user = getUser(recieverId);
+      io.to(user.socketId).emit("getMessage", {
+        sender,
+        conversationId,
+        message,
+      });
+    }
+  );
+
   // Remove users from array on disconnection
   socket.on("disconnect", () => {
     console.log("a user has been removed");

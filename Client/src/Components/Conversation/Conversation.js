@@ -25,6 +25,7 @@ const Conversation = ({
     fetchData();
   }, []);
 
+  console.log(friendData);
   const deleteChat = async () => {
     await axios.post(`/api/conversations/${chatId}`);
     setConversations([...conversations]);

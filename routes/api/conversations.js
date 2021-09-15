@@ -54,6 +54,7 @@ router.get("/:userId", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 // @route Get /api/conversations/single/conversationId
 // @desc get conversation by conversationId
 // @access Private

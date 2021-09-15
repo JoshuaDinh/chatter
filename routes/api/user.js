@@ -157,7 +157,7 @@ router.put("/:id/addFriend", async (req, res) => {
         await currentUser.updateOne({
           $push: { friendsList: user._id },
         });
-        res.status(200).json({ error: "Account has been added as a friend" });
+        res.status(200).json({ success: "Account has been added as a friend" });
       } else {
         res.status(403).json("You are already friends");
       }
@@ -169,7 +169,7 @@ router.put("/:id/addFriend", async (req, res) => {
   }
 });
 
-// @route Remove a Friend /api/user/id
+// @route Remove a Friend /api/user/id/deleteFriend
 // @desc  Remove a User as friend
 // @access Private
 
