@@ -6,8 +6,8 @@
 }
 
 .chat-box-header-avatar {
-  height: 4rem;
-  width: 4rem;
+  height: 3.5rem;
+  width: 3.5rem;
   background: #73c8a9; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to left,

@@ -3,7 +3,7 @@ import "./chatbox.css";
 import ChatInput from "../../Components/ChatInput/ChatInput";
 import Message from "../../Components/Message/Message";
 import { connect } from "react-redux";
-// import ChatBoxHeader from "../ChatBoxHeader/ChatBoxHeader";
+import ChatBoxHeader from "../ChatBoxHeader/ChatBoxHeader";
 import { io } from "socket.io-client";
 import axios from "axios";
 
@@ -52,7 +52,7 @@ const ChatBox = ({ authUser, selectedChatId }) => {
     <div className="chat-box">
       <div className="chat-box-wrapper">
         {/* Display only if conversation has been selected*/}
-        {/* {selectedChatId && <ChatBoxHeader />} */}
+        {selectedChatId && <ChatBoxHeader />}
         {selectedChatId ? (
           <div className="chat-box-messages">
             {messages?.map((msg) => {

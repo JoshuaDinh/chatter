@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
   justify-content: space-between;
   flex: 0.25;
   border: 1px solid lightgrey;
@@ -11,23 +10,8 @@
 .personal-avatar {
   width: 100%;
   min-height: 25vh;
-  /* height: 10rem;
-  width: 10rem; */
-  background: #73c8a9; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to left,
-    #373b44,
-    #73c8a9
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to left,
-    #373b44,
-    #73c8a9
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  padding: 2px;
-  /* margin-top: 30%; */
-  /* border-radius: 50%; */
   object-fit: cover;
+  border: 1px solid grey;
 }
 
 .personal-info {

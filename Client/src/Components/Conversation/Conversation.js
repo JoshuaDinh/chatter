@@ -5,13 +5,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { setCurrentChat } from "../../actions/currentChat";
 
-const Conversation = ({
-  chatId,
-  setCurrentChat,
-  friend,
-  setChatDeleted,
-  chatDeleted,
-}) => {
+const Conversation = ({ chatId, setCurrentChat, friend }) => {
   const [friendData, setFriendData] = useState([]);
   const [messageDisplay, setMessageDisplay] = useState([]);
 
