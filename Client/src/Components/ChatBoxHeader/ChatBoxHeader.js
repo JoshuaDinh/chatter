@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./chatBoxHeader.css";
 import PhoneIcon from "@mui/icons-material/Phone";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import CloseIcon from "@mui/icons-material/Close";
+import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
+
 const ChatBoxHeader = () => {
+  const [modal, setModal] = useState(false);
   return (
     <div className="chat-box-header">
       <div className="chat-box-header-left">
@@ -20,8 +23,12 @@ const ChatBoxHeader = () => {
       <div className="chat-box-header-right">
         <PhoneIcon className="chat-box-header-icon" />
         <VideoCallIcon className="chat-box-header-icon" />
-        <MoreHorizIcon className="chat-box-header-icon" />
+        <CloseIcon
+          className="chat-box-header-icon"
+          onClick={() => setModal(!modal)}
+        />
       </div>
+      {modal && <ConfirmationModal setModal={setModal} />}
     </div>
   );
 };
