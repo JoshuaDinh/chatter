@@ -24,18 +24,19 @@
 }
 
 .navigation-log-out {
-  width: 7%;
+  min-width: 5%;
   margin-right: 70px;
-  padding: 9px;
+  padding: 5px;
   background: whitesmoke;
   text-align: center;
   text-decoration: none;
   color: black;
   cursor: pointer;
   outline: none;
-  transition: 0.2s;
+  border: none;
+  transition: 0.1s;
 }
 .navigation-log-out:hover {
-  transform: scale(1.083);
+  transform: scale(1.1);
   border: none;
 }

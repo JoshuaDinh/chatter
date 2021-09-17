@@ -13,9 +13,9 @@ const Navigation = ({ Logout, isAuthenticated }) => {
   return (
     <div className="navigation">
       <h1>Chatter</h1>
-      <div className="navigation-log-out" onClick={Logout}>
+      <button className="navigation-log-out" onClick={Logout}>
         Log out
-      </div>
+      </button>
     </div>
   );
 };
