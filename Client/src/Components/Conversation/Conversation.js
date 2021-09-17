@@ -16,7 +16,7 @@ const Conversation = ({ chatId, setCurrentChat, friend, selectedChatId }) => {
       setFriendData(friendInfo.data);
       // Retrieves array of all messages by conversationId - takes last message in array and saves it for display
       setMessageDisplay(
-        singleMessage.data[singleMessage.data.length - 1].message
+        singleMessage.data[singleMessage.data.length - 1]?.message
       );
     };
     fetchData();
