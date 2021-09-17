@@ -5,7 +5,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { setCurrentChat } from "../../actions/currentChat";
 
-const Conversation = ({ chatId, setCurrentChat, friend }) => {
+const Conversation = ({ chatId, setCurrentChat, friend, selectedChatId }) => {
   const [friendData, setFriendData] = useState([]);
   const [messageDisplay, setMessageDisplay] = useState([]);
 
@@ -14,10 +14,17 @@ const Conversation = ({ chatId, setCurrentChat, friend }) => {
       const friendInfo = await axios.get(`api/user/${friend}`);
       const singleMessage = await axios.get(`api/messages/${chatId}`);
       setFriendData(friendInfo.data);
-      setMessageDisplay(singleMessage.data);
+      // Retrieves array of all messages by conversationId - takes last message in array and saves it for display
+      setMessageDisplay(
+        singleMessage.data[singleMessage.data.length - 1].message
+      );
     };
     fetchData();
   }, []);
+
+  const handleClick = () => {
+    setCurrentChat(chatId);
+  };
 
   const deleteChat = async (event) => {
     event.preventDefault();
@@ -25,7 +32,12 @@ const Conversation = ({ chatId, setCurrentChat, friend }) => {
     setCurrentChat(null);
   };
   return (
-    <div onClick={() => setCurrentChat(chatId)} className="conversation">
+    <div
+      onClick={() => handleClick()}
+      className={`conversation ${
+        selectedChatId === chatId && "conversation-active"
+      }`}
+    >
       <img
         src="https://www.incimages.com/uploaded_files/image/1920x1080/getty_624206636_200013332000928034_376810.jpg"
         alt=""
@@ -33,7 +45,7 @@ const Conversation = ({ chatId, setCurrentChat, friend }) => {
       />
       <div className="conversation-info">
         <span>{friendData.username}</span>
-        <p>{messageDisplay[messageDisplay.length - 1]?.message}</p>
+        <p>{messageDisplay}</p>
       </div>
 
       <button onClick={(event) => deleteChat(event)}>
@@ -44,7 +56,7 @@ const Conversation = ({ chatId, setCurrentChat, friend }) => {
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  return { selectedChatId: state.currentChat.chatId };
 };
 
 export default connect(mapStateToProps, {
