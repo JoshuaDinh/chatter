@@ -67,8 +67,14 @@
 .conversation-delete-icon {
   color: grey;
   cursor: pointer;
+  font-size: 1rem !important;
+}
+.conversation > button:hover {
+  transform: scale(1.35);
+  color: rgb(226, 19, 19) !important;
 }
 .conversation-delete-icon:hover {
-  color: rgb(226, 19, 19);
-  transform: scale(1.25);
+  transform: scale(1.2);
+
+  color: rgb(226, 19, 19) !important;
 }

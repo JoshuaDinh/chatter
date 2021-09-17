@@ -9,7 +9,6 @@ import Friend from "../Friend/Friend";
 
 const ChatMenu = ({ authUser, selectedChatId }) => {
   const [conversations, setConversations] = useState([]);
-
   const [toggleChats, setToggleChats] = useState(true);
   const [toggleFriends, setToggleFriends] = useState(false);
 

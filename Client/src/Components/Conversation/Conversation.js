@@ -19,11 +19,11 @@ const Conversation = ({ chatId, setCurrentChat, friend }) => {
     fetchData();
   }, []);
 
-  const deleteChat = async () => {
+  const deleteChat = async (event) => {
+    event.preventDefault();
     await axios.post(`/api/conversations/${chatId}`);
     setCurrentChat(null);
   };
-
   return (
     <div onClick={() => setCurrentChat(chatId)} className="conversation">
       <img
@@ -36,10 +36,9 @@ const Conversation = ({ chatId, setCurrentChat, friend }) => {
         <p>{messageDisplay[messageDisplay.length - 1]?.message}</p>
       </div>
 
-      <DeleteForeverIcon
-        className="conversation-delete-icon"
-        onClick={() => deleteChat()}
-      />
+      <button onClick={(event) => deleteChat(event)}>
+        <DeleteForeverIcon className="conversation-delete-icon" />
+      </button>
     </div>
   );
 };
