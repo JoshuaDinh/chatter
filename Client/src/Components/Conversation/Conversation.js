@@ -27,7 +27,6 @@ const Conversation = ({
 
   const deleteChat = async () => {
     await axios.post(`/api/conversations/${chatId}`);
-    setChatDeleted(!chatDeleted);
     setCurrentChat(null);
   };
 
