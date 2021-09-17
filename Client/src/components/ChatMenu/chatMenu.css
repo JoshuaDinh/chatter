@@ -3,7 +3,8 @@
 }
 
 .chat-menu-wrapper {
-  height: 100%;
+  max-height: 92vh;
+  overflow-x: scroll;
   padding: 10px;
   border-right: 1px solid lightgrey;
 }
