@@ -9,7 +9,6 @@ import axios from "axios";
 
 const ChatBox = ({ authUser, selectedChatId }) => {
   const [messages, setMessages] = useState([]);
-
   const socket = useRef();
   const [arrivalMessage, setArrivalMessage] = useState("");
 
@@ -23,6 +22,8 @@ const ChatBox = ({ authUser, selectedChatId }) => {
       fetchData();
     }
   }, [selectedChatId]);
+
+  console.log(messages);
 
   // useEffect(() => {
   //   socket.current = io("ws://localhost:8900");
