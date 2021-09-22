@@ -14,7 +14,7 @@ const ConfirmationModal = ({ setModal, chatId, setCurrentChat }) => {
 
   return (
     <div className="confirmationModal">
-      <h4>Are you sure you want to delete?</h4>
+      <h4>Are you sure you want to delete thread?</h4>
       {chatId}
       <div className="confirmationModal-button-container">
         <button onClick={(event) => deleteChat(event)}>Delete</button>
