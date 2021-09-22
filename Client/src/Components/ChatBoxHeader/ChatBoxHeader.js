@@ -9,7 +9,6 @@ import axios from "axios";
 
 const ChatBoxHeader = ({ selectedChatId, authUser }) => {
   const [modal, setModal] = useState(false);
-  const [friendId, setFriendId] = useState("");
   const [friendData, setFriendData] = useState([]);
 
   useEffect(() => {

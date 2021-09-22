@@ -4,22 +4,16 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { setCurrentChat } from "../../actions/currentChat";
 
-const Friend = ({ friend, chatId, setCurrentChat, authUser }) => {
+const Friend = ({ friend, setCurrentChat, authUser }) => {
   const [friendData, setFriendData] = useState([]);
   const [conversationId, setConversationId] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       const friendInfo = await axios.get(`api/user/${friend}`);
-      setFriendData(friendInfo.data);
-    };
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
       const response = await axios.get(`api/conversations/${friend}`);
       setConversationId(response.data[0]);
+      setFriendData(friendInfo.data);
     };
     fetchData();
   }, []);
@@ -29,8 +23,10 @@ const Friend = ({ friend, chatId, setCurrentChat, authUser }) => {
       senderId: authUser._id,
       recieverId: friendData._id,
     };
+    // Search for an existing conversationId by sender & reciever - creates a new one if none is found.
     if (conversationId) {
       setCurrentChat(conversationId._id);
+      return;
     } else {
       const response = await axios.post("api/conversations", body);
       setCurrentChat(response.data._id);
@@ -54,6 +50,7 @@ const Friend = ({ friend, chatId, setCurrentChat, authUser }) => {
 const mapStateToProps = (state) => {
   return {
     authUser: state.auth.user,
+    selectedChatId: state.currentChat.chatId,
   };
 };
 

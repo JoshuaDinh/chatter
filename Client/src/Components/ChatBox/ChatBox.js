@@ -23,7 +23,7 @@ const ChatBox = ({ authUser, selectedChatId }) => {
     }
   }, [selectedChatId]);
 
-  console.log(messages);
+  console.log("chatbox");
 
   // useEffect(() => {
   //   socket.current = io("ws://localhost:8900");

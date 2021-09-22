@@ -18,8 +18,10 @@ const ChatMenu = ({ authUser, selectedChatId }) => {
       setConversations(response.data);
     };
     fetchData();
-  }, [authUser, selectedChatId]);
+  }, [selectedChatId]);
+  console.log("chatmenu");
 
+  console.log(conversations);
   // Switchs between displaying conversations and friends list
   const toggleChatMenu = () => {
     setToggleChats(true);
