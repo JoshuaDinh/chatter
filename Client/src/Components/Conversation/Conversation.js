@@ -4,10 +4,12 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import axios from "axios";
 import { connect } from "react-redux";
 import { setCurrentChat } from "../../actions/currentChat";
+import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 
 const Conversation = ({ chatId, setCurrentChat, friend, selectedChatId }) => {
   const [friendData, setFriendData] = useState([]);
   const [messageDisplay, setMessageDisplay] = useState([]);
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,9 +29,8 @@ const Conversation = ({ chatId, setCurrentChat, friend, selectedChatId }) => {
   };
 
   const deleteChat = async (event) => {
-    event.preventDefault();
-    await axios.post(`/api/conversations/${chatId}`);
     setCurrentChat(null);
+    setModal(!modal);
   };
   return (
     <div
@@ -47,6 +48,7 @@ const Conversation = ({ chatId, setCurrentChat, friend, selectedChatId }) => {
         <span>{friendData.username}</span>
         <p>{messageDisplay}</p>
       </div>
+      {modal && <ConfirmationModal setModal={setModal} />}
 
       <button onClick={(event) => deleteChat(event)}>
         <DeleteForeverIcon className="conversation-delete-icon" />

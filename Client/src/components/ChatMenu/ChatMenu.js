@@ -19,9 +19,7 @@ const ChatMenu = ({ authUser, selectedChatId }) => {
     };
     fetchData();
   }, [selectedChatId]);
-  console.log("chatmenu");
 
-  console.log(conversations);
   // Switchs between displaying conversations and friends list
   const toggleChatMenu = () => {
     setToggleChats(true);
@@ -64,6 +62,7 @@ const ChatMenu = ({ authUser, selectedChatId }) => {
             Friends
           </h3>
         </div>
+
         {toggleChats &&
           conversations.map((c) => {
             return (
